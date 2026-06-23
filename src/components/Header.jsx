@@ -1,18 +1,7 @@
 import { useState, useEffect } from 'react'
 import { NavLink, Link, useNavigate } from 'react-router-dom'
 import styles from './Header.module.css'
-
-const CavaquinhoIcon = () => (
-  <svg width="38" height="38" viewBox="0 0 38 38" fill="none" aria-hidden="true">
-    <path d="M19 3C19 3 10 8 10 18c0 5.5 4 9 9 9s9-3.5 9-9c0-10-9-15-9-15z" fill="#1e3a8a"/>
-    <rect x="17" y="26" width="4" height="9" rx="2" fill="#1e3a8a"/>
-    <rect x="15" y="34" width="8" height="2" rx="1" fill="#1e3a8a"/>
-    <line x1="14" y1="14" x2="24" y2="14" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/>
-    <line x1="14" y1="17" x2="24" y2="17" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/>
-    <line x1="14" y1="20" x2="24" y2="20" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/>
-    <line x1="14" y1="23" x2="24" y2="23" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/>
-  </svg>
-)
+import logoCavaquinho from '../assets/logo-cavaquinho.png'
 
 const ChevronDown = () => (
   <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
@@ -62,7 +51,7 @@ export default function Header() {
         <div className={styles.mobileNav} role="navigation" aria-label="Navegação mobile">
           <div className={styles.mobileHeader}>
             <Link to="/" className={styles.logo} onClick={() => setMobileOpen(false)}>
-              <CavaquinhoIcon />
+              <img src={logoCavaquinho} alt="Logo Cavaquinho" style={{height: '58px', width: 'auto'}} />
               <div className={styles.logoText}>
                 Memória do<strong>Cavaquinho</strong>Brasileiro
               </div>
@@ -104,7 +93,7 @@ export default function Header() {
       <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
         <div className={styles.inner}>
           <Link to="/" className={styles.logo}>
-            <CavaquinhoIcon />
+            <img src={logoCavaquinho} alt="Logo Cavaquinho" style={{height: '58px', width: 'auto'}} />
             <div className={styles.logoText}>
               Memória do<strong>Cavaquinho</strong>Brasileiro
             </div>
