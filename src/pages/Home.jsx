@@ -37,7 +37,27 @@ const cards = [
 
 export default function Home() {
   const navigate = useNavigate()
+
   useEffect(() => { window.scrollTo(0, 0) }, [])
+
+  // Reveal suave ao entrar na viewport
+  useEffect(() => {
+    const els = document.querySelectorAll(`.${styles.reveal}`)
+    if (!('IntersectionObserver' in window) || !els.length) {
+      els.forEach(el => el.classList.add(styles.isVisible))
+      return
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add(styles.isVisible)
+          io.unobserve(entry.target)
+        }
+      })
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' })
+    els.forEach(el => io.observe(el))
+    return () => io.disconnect()
+  }, [])
 
   return (
     <div className="page-animate">
@@ -46,6 +66,7 @@ export default function Home() {
         <div className={styles.heroOverlay} aria-hidden="true" />
         <div className="container">
           <div className={styles.heroContent}>
+            <span className={styles.heroKicker}>Música · História · Memória</span>
             <h1 className={styles.heroTitle}>
               Memória do
               <span>Cavaquinho Brasileiro</span>
@@ -59,32 +80,41 @@ export default function Home() {
 
       {/* Intro */}
       <section className={styles.intro}>
-        <div className={styles.introDots} aria-hidden="true">
+        <div className={`${styles.introDots} ${styles.reveal}`} aria-hidden="true">
           <span /><span /><span />
         </div>
-        <p className={styles.introText}>
+        <p className={`${styles.introText} ${styles.reveal}`}>
           Este é um espaço inteiramente dedicado ao estudo, pesquisa e divulgação do cavaquinho brasileiro, seus intérpretes e compositores. Aqui você encontrará partituras, perfis biográficos de cavaquinistas e compositores, trabalhos acadêmicos e muito mais. Nossa proposta é que sejamos um espaço para troca e diálogo, em que estamos abertos para receber críticas e sugestões visando ampliar e melhorar nosso trabalho. Além disso, este é um "portal vivo", que frequentemente será atualizado com novos arquivos e informações. Agradecemos sua visita e contamos com a colaboração e parceria de todas as pessoas para que possamos assim ter uma memória e história do cavaquinho brasileiro mais ampla e diversa do jeito que é a nossa cultura.
         </p>
-        <p className={styles.introViva}>Viva o Cavaquinho Brasileiro!</p>
+        <p className={`${styles.introViva} ${styles.reveal}`}>Viva o Cavaquinho Brasileiro!</p>
       </section>
 
       {/* Cards */}
       <section className={styles.highlights} aria-label="Seções do acervo">
         <div className="container">
+          <div className={`${styles.sectionHead} ${styles.reveal}`}>
+            <span className={styles.sectionKicker}>Explore</span>
+            <h2 className={styles.sectionTitle}>O Acervo</h2>
+          </div>
           <div className={styles.grid}>
-            {cards.map(c => (
-              <button
+            {cards.map((c, i) => (
+              <div
                 key={c.to}
-                className={styles.card}
-                onClick={() => navigate(c.to)}
-                aria-label={`Ir para ${c.title}`}
+                className={`${styles.cardWrap} ${styles.reveal}`}
+                style={{ transitionDelay: `${i * 0.08}s` }}
               >
-                <div className={styles.cardIcon} aria-hidden="true">
-                  {icons[c.icon]}
-                </div>
-                <h3 className={styles.cardTitle}>{c.title}</h3>
-                <p className={styles.cardDesc}>{c.desc}</p>
-              </button>
+                <button
+                  className={styles.card}
+                  onClick={() => navigate(c.to)}
+                  aria-label={`Ir para ${c.title}`}
+                >
+                  <div className={styles.cardIcon} aria-hidden="true">
+                    {icons[c.icon]}
+                  </div>
+                  <h3 className={styles.cardTitle}>{c.title}</h3>
+                  <p className={styles.cardDesc}>{c.desc}</p>
+                </button>
+              </div>
             ))}
           </div>
         </div>
