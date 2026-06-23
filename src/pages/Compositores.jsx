@@ -1,144 +1,117 @@
-import { useEffect, useState } from 'react'
-import PageBanner from '../components/PageBanner'
+import { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { compositores } from '../data/compositores'
 import styles from './Compositores.module.css'
 
+const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+
 const PersonIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="60" height="60">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="36" height="36">
     <circle cx="12" cy="8" r="5"/><path d="M3 21c0-5 4-9 9-9s9 4 9 9"/>
   </svg>
 )
-const EyeIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16">
-    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
-  </svg>
-)
-const FileIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16">
-    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-    <polyline points="14,2 14,8 20,8"/>
-  </svg>
-)
 
-const compositores = [
-  {
-    id: 'abel-luiz',
-    name: 'Abel Luiz',
-    fullName: 'Abel Luiz Oliveira da Silva Machado',
-    nascimento: '10/04/1982 – RJ',
-    afinacao: 'ré-sol-si-ré / sol-ré-lá-mi',
-    initials: 'AL',
-    bio: 'Criado nas Rodas de Choro, levado por seu avô, Abel Luiz atua no cenário musical como compositor, arranjador, diretor musical e multi-instrumentista. É fundador do Samba do Trabalhador, participando do primeiro CD e DVD do mesmo. Coordena o Bloco Carnavalesco Loucura Suburbana, pioneiro no campo da cultura e saúde mental. Atualmente, integra o Projeto Terreiro de Crioulo, o Trio Choro Novo, e o Duo Onze Cordas – projetos onde som e construção de conhecimento são realizados de forma integrada.',
-    obras: [
-      { title: 'Quase Choro', year: 1982 },
-      { title: 'Carinhosa', year: 1982 },
-      { title: 'Valsa da Saudade', year: 1982 },
-    ],
-  },
-  {
-    id: 'francisco-macambira',
-    name: 'Francisco Macambira',
-    fullName: 'Francisco José Macambira (Chiquinho do Cavaquinho)',
-    nascimento: '15/12/1937 – PA',
-    afinacao: 'ré-sol-si-ré',
-    initials: 'FM',
-    bio: 'Desde a sua infância se interessou por música, inicialmente tocando pandeiro, e posteriormente aprendendo sozinho instrumentos de cordas dedilhadas, se firmando com o cavaquinho. Chegou no Rio de Janeiro no dia 1º de outubro de 1945, cidade essa onde pôde realizar o sonho de tocar em programas de rádio, e onde reside atualmente. Além de intérprete, Chiquinho também é compositor. Teve duas de suas músicas gravadas por seu ídolo e amigo, o cavaquinista Waldir Azevedo, sendo elas: "Um Cavaquinho sobe o morro" (LP Volta aos chorinhos 1964) e "Só tu não sabes que eu te amo" (LP Tocando para você 1971).',
-    obras: [
-      { title: 'Ave Maria dos Músicos', year: 1937 },
-      { title: 'Um Cavaquinho Sobe o Morro', year: 1937 },
-      { title: 'Só Tu Não Sabes', year: 1937 },
-    ],
-  },
-]
-
-function CompositorSection({ c }) {
-  const [query, setQuery] = useState('')
-  const filtered = c.obras.filter(o => o.title.toLowerCase().includes(query.toLowerCase()))
-
-  return (
-    <section className={styles.section} id={`compositor-${c.id}`}>
-      <div className={styles.profile}>
-        <div className={styles.photoWrap}>
-          <div className={styles.photo} aria-label={`Foto de ${c.name}`}>
-            <PersonIcon />
-          </div>
-        </div>
-        <div className={styles.info}>
-          <h2 className={styles.name}>{c.name}</h2>
-          <div className={styles.meta}>
-            <p><strong>{c.fullName}</strong></p>
-            <p><strong>Nascimento:</strong> {c.nascimento}</p>
-            <p><strong>Afinação:</strong> {c.afinacao}</p>
-          </div>
-          <p className={styles.bio}>{c.bio}</p>
-        </div>
-      </div>
-
-      {/* Search */}
-      <div className={styles.searchBar} role="search">
-        <input
-          className={styles.searchInput}
-          type="text"
-          placeholder="Pesquisar Música"
-          value={query}
-          onChange={e => setQuery(e.target.value)}
-          aria-label={`Pesquisar obras de ${c.name}`}
-        />
-        <button className={styles.searchBtn} aria-label="Pesquisar">Pesquisar</button>
-      </div>
-
-      {/* Table */}
-      <table className={styles.table} aria-label={`Obras de ${c.name}`}>
-        <thead>
-          <tr>
-            <th scope="col">Obra</th>
-            <th scope="col">Compositor (Nascimento–Morte)</th>
-            <th scope="col">Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filtered.length === 0 ? (
-            <tr><td colSpan={3} style={{ textAlign: 'center', padding: '20px', color: 'var(--color-text-muted)' }}>Nenhuma obra encontrada.</td></tr>
-          ) : filtered.map(o => (
-            <tr key={o.title}>
-              <td>{o.title}</td>
-              <td>
-                <div className={styles.composerCell}>
-                  <div className={styles.avatar} aria-hidden="true">{c.initials}</div>
-                  {c.name} | {o.year}
-                </div>
-              </td>
-              <td>
-                <div className={styles.actions}>
-                  <button className={styles.actionBtn} title="Ver partitura" aria-label={`Ver partitura de ${o.title}`}>
-                    <EyeIcon />
-                  </button>
-                  <span aria-hidden="true">|</span>
-                  <button className={styles.actionBtn} title="Baixar PDF" aria-label={`Baixar PDF de ${o.title}`}>
-                    <FileIcon />
-                  </button>
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </section>
-  )
+function anoNasc(nascimento) {
+  if (!nascimento) return null
+  return nascimento.split('/')[2] || nascimento
 }
 
 export default function Compositores() {
+  const [activeLetter, setActiveLetter] = useState(null)
+  const [search, setSearch] = useState('')
+  const navigate = useNavigate()
+
   useEffect(() => { window.scrollTo(0, 0) }, [])
+
+  const letrasComCompositores = new Set(
+    compositores.map(c => c.nome[0].toUpperCase())
+  )
+
+  const filtered = compositores
+    .filter(c => !activeLetter || c.nome.toUpperCase().startsWith(activeLetter))
+    .filter(c => !search || c.nome.toLowerCase().includes(search.toLowerCase()))
+    .sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'))
+
   return (
     <div className="page-animate">
-      <PageBanner title="Compositores" subtitle="Cavaquinistas e Compositores" />
+      <div className={styles.pageHeader}>
+        <div className={styles.pageHeaderInner}>
+          <h1 className={styles.pageTitle}>Compositores</h1>
+          <input
+            className={styles.searchInput}
+            type="text"
+            placeholder="Buscar compositor..."
+            value={search}
+            onChange={e => { setSearch(e.target.value); setActiveLetter(null) }}
+            aria-label="Buscar compositor"
+          />
+        </div>
+      </div>
+
       <div className={styles.content}>
         <div className={styles.inner}>
-          {compositores.map((c, i) => (
-            <div key={c.id}>
-              {i > 0 && <hr className={styles.divider} />}
-              <CompositorSection c={c} />
-            </div>
-          ))}
+
+          {/* Breadcrumb */}
+          <nav className={styles.breadcrumb} aria-label="Caminho">
+            <span className={styles.breadcrumbIcon} aria-hidden="true">&#9632;</span>
+            <Link to="/" className={styles.breadcrumbLink}>Início</Link>
+            <span className={styles.breadcrumbSep}>&gt;</span>
+            <span className={styles.breadcrumbCurrent}>Compositores</span>
+          </nav>
+
+          {/* Alfabeto */}
+          <div className={styles.alphaBar} role="navigation" aria-label="Filtro alfabético">
+            {ALPHABET.map(letter => (
+              <button
+                key={letter}
+                className={`${styles.alphaBtn} ${activeLetter === letter ? styles.alphaBtnActive : ''} ${!letrasComCompositores.has(letter) ? styles.alphaBtnDisabled : ''}`}
+                onClick={() => {
+                  if (!letrasComCompositores.has(letter)) return
+                  setActiveLetter(prev => prev === letter ? null : letter)
+                  setSearch('')
+                }}
+                aria-pressed={activeLetter === letter}
+                aria-label={`Filtrar pela letra ${letter}`}
+                disabled={!letrasComCompositores.has(letter)}
+              >
+                {letter}
+              </button>
+            ))}
+            <button
+              className={`${styles.alphaBtn} ${styles.alphaBtnAll} ${!activeLetter ? styles.alphaBtnActive : ''}`}
+              onClick={() => { setActiveLetter(null); setSearch('') }}
+            >
+              Ver Todos
+            </button>
+          </div>
+
+          {/* Lista */}
+          <div className={styles.list} role="list">
+            {filtered.length === 0 ? (
+              <p className={styles.empty}>Nenhum compositor encontrado.</p>
+            ) : filtered.map(c => (
+              <Link
+                key={c.id}
+                to={`/compositores/${c.id}`}
+                className={styles.listItem}
+                role="listitem"
+                aria-label={`Ver perfil de ${c.nome}`}
+              >
+                <div className={styles.listPhoto}>
+                  {c.foto
+                    ? <img src={c.foto} alt={c.nome} />
+                    : <PersonIcon />
+                  }
+                </div>
+                <div className={styles.listName}>{c.nome}</div>
+                <div className={styles.listDates}>
+                  {anoNasc(c.nascimento) && <span>N. <strong>{anoNasc(c.nascimento)}</strong></span>}
+                  {c.falecimento && <span>F. <strong>{anoNasc(c.falecimento)}</strong></span>}
+                </div>
+              </Link>
+            ))}
+          </div>
+
         </div>
       </div>
     </div>
