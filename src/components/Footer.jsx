@@ -1,17 +1,6 @@
 import { Link } from 'react-router-dom'
 import styles from './Footer.module.css'
-
-const CavaquinhoIconLight = () => (
-  <svg width="30" height="30" viewBox="0 0 38 38" fill="none" aria-hidden="true">
-    <path d="M19 3C19 3 10 8 10 18c0 5.5 4 9 9 9s9-3.5 9-9c0-10-9-15-9-15z" fill="rgba(255,255,255,0.85)"/>
-    <rect x="17" y="26" width="4" height="9" rx="2" fill="rgba(255,255,255,0.85)"/>
-    <rect x="15" y="34" width="8" height="2" rx="1" fill="rgba(255,255,255,0.85)"/>
-    <line x1="14" y1="14" x2="24" y2="14" stroke="rgba(30,58,138,0.9)" strokeWidth="1.5" strokeLinecap="round"/>
-    <line x1="14" y1="17" x2="24" y2="17" stroke="rgba(30,58,138,0.9)" strokeWidth="1.5" strokeLinecap="round"/>
-    <line x1="14" y1="20" x2="24" y2="20" stroke="rgba(30,58,138,0.9)" strokeWidth="1.5" strokeLinecap="round"/>
-    <line x1="14" y1="23" x2="24" y2="23" stroke="rgba(30,58,138,0.9)" strokeWidth="1.5" strokeLinecap="round"/>
-  </svg>
-)
+import logoCavaquinhoWhite from '../assets/logo-cavaquinho-white.png'
 
 const acervoLinks = [
   { label: 'Banco de Partituras', to: '/partituras' },
@@ -34,7 +23,7 @@ export default function Footer() {
           {/* Brand */}
           <div className={styles.brand}>
             <Link to="/" className={styles.logo}>
-              <CavaquinhoIconLight />
+              <img src={logoCavaquinhoWhite} alt="Logo Cavaquinho" style={{height: '58px', width: 'auto'}} />
               <div className={styles.logoText}>
                 Memória do<strong>Cavaquinho</strong>Brasileiro
               </div>
