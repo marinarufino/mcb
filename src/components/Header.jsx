@@ -11,9 +11,9 @@ const ChevronDown = () => (
 
 const dropdowns = {
   biblioteca: [
+    { label: 'Métodos', to: '/biblioteca' },
+    { label: 'Pesquisas', to: '/biblioteca' },
     { label: 'Acervo Digital', to: '/biblioteca' },
-    { label: 'Métodos e Tutoriais', to: '/biblioteca' },
-    { label: 'Gravações Raras', to: '/biblioteca' },
   ],
   realizacoes: [
     { label: 'Festival MCB', to: '/realizacoes' },

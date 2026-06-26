@@ -124,15 +124,31 @@
   color: var(--color-text-muted);
   margin-bottom: 24px;
 }
-.contatoLinks { display: flex; flex-direction: column; gap: 14px; }
+.contatoLinks { display: flex; flex-direction: column; gap: 12px; }
 .contatoLink {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 0.88rem;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-bg-card);
   color: var(--color-primary);
-  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
 }
+.contatoLink:hover {
+  border-color: var(--color-primary);
+  background: #f4f7fe;
+  box-shadow: 0 4px 14px rgba(30, 58, 138, 0.12);
+  transform: translateY(-2px);
+}
+.contatoLinkIcon { flex-shrink: 0; }
+.contatoLinkText { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.contatoLinkTitle { font-size: 1rem; font-weight: 700; }
+.contatoLinkSub { font-size: 0.82rem; color: var(--color-text-muted); font-weight: 500; }
+.contatoLinkSeta { flex-shrink: 0; color: var(--color-text-muted); transition: transform 0.2s ease, color 0.2s ease; }
+.contatoLink:hover .contatoLinkSeta { transform: translateX(4px); color: var(--color-primary); }
 .form { display: flex; flex-direction: column; gap: 16px; }
 .formField { display: flex; flex-direction: column; gap: 6px; }
 .formLabel {
