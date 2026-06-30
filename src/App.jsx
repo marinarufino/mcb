@@ -3,6 +3,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import Partituras from './pages/Partituras'
+import PartituraPerfil from './pages/PartituraPerfil'
 import Compositores from './pages/Compositores'
 import CompositorPerfil from './pages/CompositorPerfil'
 import Missao from './pages/Missao'
@@ -11,7 +12,7 @@ import Equipe from './pages/Equipe'
 import Biblioteca from './pages/Biblioteca'
 import Realizacoes from './pages/Realizacoes'
 import Contato from './pages/Contato'
-import Festival from './pages/Festival'
+import EmConstrucao from './components/EmConstrucao'
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/partituras" element={<Partituras />} />
+          <Route path="/partituras/:id" element={<PartituraPerfil />} />
           <Route path="/compositores" element={<Compositores />} />
           <Route path="/compositores/:id" element={<CompositorPerfil />} />
           <Route path="/missao" element={<Missao />} />
@@ -29,7 +31,17 @@ export default function App() {
           <Route path="/biblioteca" element={<Biblioteca />} />
           <Route path="/realizacoes" element={<Realizacoes />} />
           <Route path="/contato" element={<Contato />} />
-          <Route path="/festival" element={<Festival />} />
+          <Route path="/festival" element={<EmConstrucao titulo="Festival" subtitulo="O Festival do Cavaquinho Brasileiro" />} />
+
+          {/* Submenu Biblioteca — em construção */}
+          <Route path="/biblioteca/metodos" element={<EmConstrucao titulo="Métodos" subtitulo="Biblioteca · Métodos de Cavaquinho" />} />
+          <Route path="/biblioteca/pesquisas" element={<EmConstrucao titulo="Pesquisas" subtitulo="Biblioteca · Pesquisas e Textos Acadêmicos" />} />
+          <Route path="/biblioteca/acervo-digital" element={<EmConstrucao titulo="Acervo Digital" subtitulo="Biblioteca · Gravações e Fotografias" />} />
+
+          {/* Submenu Realizações — em construção */}
+          <Route path="/realizacoes/oficinas" element={<EmConstrucao titulo="Oficinas" subtitulo="Realizações · Oficinas" />} />
+          <Route path="/realizacoes/homenagens" element={<EmConstrucao titulo="Homenagens" subtitulo="Realizações · Homenagens" />} />
+          <Route path="/realizacoes/palestras" element={<EmConstrucao titulo="Palestras" subtitulo="Realizações · Palestras" />} />
         </Routes>
       </main>
       <Footer />

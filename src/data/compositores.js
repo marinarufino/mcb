@@ -31,4 +31,19 @@ export const compositores = [
       { title: 'Só Tu Não Sabes', year: 1971 },
     ],
   },
+  {
+    id: 'carlos-chaves',
+    nome: 'Carlos Chaves',
+    nomeCompleto: null,
+    nascimento: null,
+    falecimento: null,
+    localNascimento: null,
+    afinacao: 'ré-sol-si-ré',
+    foto: null,
+    // Biografia a preencher — sem dados confirmados ainda.
+    bio: 'Informações biográficas em breve.',
+    obras: [
+      { title: 'Choro pro Oga', year: null },
+    ],
+  },
 ]

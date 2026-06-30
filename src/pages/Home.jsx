@@ -94,11 +94,6 @@ export default function Home() {
       {/* Princípios — Missão / Visão / Valores */}
       <section className={styles.principios} aria-label="Nossos princípios">
         <div className="container">
-          <div className={`${styles.sectionHead} ${styles.reveal}`}>
-            <span className={styles.sectionKicker}>Nossos Princípios</span>
-            <h2 className={styles.sectionTitle}>O Que Nos Move</h2>
-          </div>
-
           {/* Missão — declaração central */}
           <p className={`${styles.missaoStatement} ${styles.reveal}`}>
             <span className={styles.principioLabel}>Missão</span>

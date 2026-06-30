@@ -101,6 +101,18 @@
   position: absolute;
   top: calc(100% + 4px);
   left: 0;
+}
+/* Ponte invisível: cobre o vão entre o item e o painel para o hover
+   não se perder ao descer o mouse. */
+.dropdown::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 0;
+  right: 0;
+  height: 6px;
+}
+.dropdown {
   min-width: 190px;
   background: var(--color-white);
   border: 1px solid var(--color-border);

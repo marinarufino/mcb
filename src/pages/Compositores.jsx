@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { compositores } from '../data/compositores'
+import { useCavaquinistas } from '../lib/content'
 import styles from './Compositores.module.css'
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
@@ -23,11 +23,14 @@ export default function Compositores() {
 
   useEffect(() => { window.scrollTo(0, 0) }, [])
 
+  const compositores = useCavaquinistas()
+  const lista = compositores || []
+
   const letrasComCompositores = new Set(
-    compositores.map(c => c.nome[0].toUpperCase())
+    lista.map(c => c.nome[0].toUpperCase())
   )
 
-  const filtered = compositores
+  const filtered = lista
     .filter(c => !activeLetter || c.nome.toUpperCase().startsWith(activeLetter))
     .filter(c => !search || c.nome.toLowerCase().includes(search.toLowerCase()))
     .sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'))
@@ -36,14 +39,14 @@ export default function Compositores() {
     <div className="page-animate">
       <div className={styles.pageHeader}>
         <div className={styles.pageHeaderInner}>
-          <h1 className={styles.pageTitle}>Compositores</h1>
+          <h1 className={styles.pageTitle}>Cavaquinistas</h1>
           <input
             className={styles.searchInput}
             type="text"
-            placeholder="Buscar compositor..."
+            placeholder="Buscar cavaquinista..."
             value={search}
             onChange={e => { setSearch(e.target.value); setActiveLetter(null) }}
-            aria-label="Buscar compositor"
+            aria-label="Buscar cavaquinista"
           />
         </div>
       </div>
@@ -56,7 +59,7 @@ export default function Compositores() {
             <span className={styles.breadcrumbIcon} aria-hidden="true">&#9632;</span>
             <Link to="/" className={styles.breadcrumbLink}>Início</Link>
             <span className={styles.breadcrumbSep}>&gt;</span>
-            <span className={styles.breadcrumbCurrent}>Compositores</span>
+            <span className={styles.breadcrumbCurrent}>Cavaquinistas</span>
           </nav>
 
           {/* Alfabeto */}
@@ -87,8 +90,10 @@ export default function Compositores() {
 
           {/* Lista */}
           <div className={styles.list} role="list">
-            {filtered.length === 0 ? (
-              <p className={styles.empty}>Nenhum compositor encontrado.</p>
+            {compositores === null ? (
+              <p className={styles.empty}>Carregando…</p>
+            ) : filtered.length === 0 ? (
+              <p className={styles.empty}>Nenhum cavaquinista encontrado.</p>
             ) : filtered.map(c => (
               <Link
                 key={c.id}

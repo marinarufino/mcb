@@ -1,0 +1,50 @@
+export default {
+  name: 'partitura',
+  title: 'Partitura',
+  type: 'document',
+  fields: [
+    {
+      name: 'title',
+      title: 'Título',
+      type: 'string',
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: 'slug',
+      title: 'Slug (endereço na URL)',
+      type: 'slug',
+      options: { source: 'title', maxLength: 96 },
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: 'compositor',
+      title: 'Compositor',
+      type: 'reference',
+      to: [{ type: 'cavaquinista' }],
+      description: 'Escolha o cavaquinista (gera o link automático entre as páginas).',
+    },
+    { name: 'genero', title: 'Gênero', type: 'string', description: 'Ex.: Choro, Valsa' },
+    { name: 'afinacao', title: 'Afinação', type: 'string', description: 'Ex.: ré-sol-si-ré' },
+    { name: 'fontes', title: 'Fontes', type: 'string' },
+    { name: 'editoracao', title: 'Editoração', type: 'string' },
+    {
+      name: 'imagem',
+      title: 'Imagem ilustrativa',
+      type: 'image',
+      options: { hotspot: true },
+    },
+    {
+      name: 'arquivo',
+      title: 'Arquivo da partitura (PDF)',
+      type: 'file',
+      options: { accept: '.pdf' },
+    },
+    {
+      name: 'audio',
+      title: 'Áudio',
+      type: 'file',
+      options: { accept: 'audio/*' },
+    },
+  ],
+  preview: { select: { title: 'title', subtitle: 'genero', media: 'imagem' } },
+}

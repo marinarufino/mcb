@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
-import { compositores } from '../data/compositores'
+import { useCavaquinistas } from '../lib/content'
 import styles from './CompositorPerfil.module.css'
 
 const PersonIcon = () => (
@@ -12,27 +12,29 @@ const PersonIcon = () => (
 export default function CompositorPerfil() {
   const { id } = useParams()
   const navigate = useNavigate()
-  const c = compositores.find(x => x.id === id)
+  const compositores = useCavaquinistas()
+  const c = compositores ? compositores.find(x => x.id === id) : null
 
   useEffect(() => { window.scrollTo(0, 0) }, [id])
+
+  if (compositores === null) {
+    return <div className={styles.notFound}><p>Carregando…</p></div>
+  }
 
   if (!c) {
     return (
       <div className={styles.notFound}>
-        <p>Compositor não encontrado.</p>
+        <p>Cavaquinista não encontrado.</p>
         <button onClick={() => navigate('/compositores')}>← Voltar</button>
       </div>
     )
   }
 
-  const anoNasc = c.nascimento ? c.nascimento.split('/')[2] : null
-  const anoFalec = c.falecimento ? c.falecimento.split('/')[2] : null
-
   return (
     <div className="page-animate">
       <div className={styles.pageHeader}>
         <div className={styles.pageHeaderInner}>
-          <h1 className={styles.pageTitle}>Compositores</h1>
+          <h1 className={styles.pageTitle}>Cavaquinistas</h1>
         </div>
       </div>
 
@@ -44,14 +46,14 @@ export default function CompositorPerfil() {
             <span className={styles.breadcrumbIcon} aria-hidden="true">&#9632;</span>
             <Link to="/" className={styles.breadcrumbLink}>Início</Link>
             <span className={styles.breadcrumbSep}>&gt;</span>
-            <Link to="/compositores" className={styles.breadcrumbLink}>Compositores</Link>
+            <Link to="/compositores" className={styles.breadcrumbLink}>Cavaquinistas</Link>
             <span className={styles.breadcrumbSep}>&gt;</span>
             <span className={styles.breadcrumbCurrent}>{c.nome.toUpperCase()}</span>
           </nav>
 
           {/* Perfil */}
           <div className={styles.profile}>
-            {/* Coluna esquerda: foto + naturalidade */}
+            {/* Coluna esquerda: foto + ficha */}
             <div className={styles.left}>
               <div className={styles.photoWrap}>
                 {c.foto
@@ -59,42 +61,42 @@ export default function CompositorPerfil() {
                   : <div className={styles.photoPlaceholder}><PersonIcon /></div>
                 }
               </div>
-              {c.localNascimento && (
-                <div className={styles.naturalidade}>
-                  <span className={styles.naturalidadeLabel}>Naturalidade</span>
-                  <span className={styles.naturalidadeVal}>{c.localNascimento}</span>
-                </div>
-              )}
+              <dl className={styles.facts}>
+                {c.localNascimento && (
+                  <div className={styles.factRow}>
+                    <dt>Naturalidade</dt><dd>{c.localNascimento}</dd>
+                  </div>
+                )}
+                {c.nascimento && (
+                  <div className={styles.factRow}>
+                    <dt>Nascimento</dt><dd>{c.nascimento}</dd>
+                  </div>
+                )}
+                {c.falecimento && (
+                  <div className={styles.factRow}>
+                    <dt>Falecimento</dt><dd>{c.falecimento}</dd>
+                  </div>
+                )}
+                {c.afinacao && (
+                  <div className={styles.factRow}>
+                    <dt>Afinação</dt><dd>{c.afinacao}</dd>
+                  </div>
+                )}
+              </dl>
             </div>
 
             {/* Coluna direita: verbete */}
             <div className={styles.right}>
               <span className={styles.verbeteLabel}>VERBETE</span>
               <h2 className={styles.nome}>{c.nome}</h2>
-
-              <div className={styles.datas}>
-                {c.nascimento && (
-                  <p>N. <strong>{c.nascimento}</strong></p>
-                )}
-                {c.falecimento && (
-                  <p>F. <strong>{c.falecimento}</strong></p>
-                )}
-              </div>
-
-              {c.afinacao && (
-                <p className={styles.afinacao}>
-                  <strong>Afinação:</strong> {c.afinacao}
-                </p>
-              )}
-
-              <hr className={styles.divider} />
-
               {c.nomeCompleto && (
                 <p className={styles.nomeCompleto}><em>{c.nomeCompleto}</em></p>
               )}
 
+              <hr className={styles.divider} />
+
               <div className={styles.bio}>
-                {c.bio.split('\n').map((p, i) => <p key={i}>{p}</p>)}
+                {(c.bio || '').split('\n').map((p, i) => <p key={i}>{p}</p>)}
               </div>
 
               {c.obras && c.obras.length > 0 && (
@@ -114,7 +116,7 @@ export default function CompositorPerfil() {
           </div>
 
           <Link to="/compositores" className={styles.backLink}>
-            ← Voltar para Compositores
+            ← Voltar para Cavaquinistas
           </Link>
 
         </div>

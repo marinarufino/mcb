@@ -267,7 +267,7 @@
 
 /* ── PRINCÍPIOS (Missão / Visão / Valores) ────────────────── */
 .principios {
-  padding: clamp(64px, 9vw, 112px) 24px;
+  padding: clamp(32px, 4.5vw, 56px) 24px clamp(64px, 9vw, 112px);
   background: var(--color-white);
   border-bottom: 1px solid var(--color-border-light);
 }

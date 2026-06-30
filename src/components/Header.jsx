@@ -11,19 +11,18 @@ const ChevronDown = () => (
 
 const dropdowns = {
   biblioteca: [
-    { label: 'Métodos', to: '/biblioteca' },
-    { label: 'Pesquisas', to: '/biblioteca' },
-    { label: 'Acervo Digital', to: '/biblioteca' },
+    { label: 'Métodos', to: '/biblioteca/metodos' },
+    { label: 'Pesquisas', to: '/biblioteca/pesquisas' },
+    { label: 'Acervo Digital', to: '/biblioteca/acervo-digital' },
   ],
   realizacoes: [
-    { label: 'Festival MCB', to: '/realizacoes' },
-    { label: 'Publicações', to: '/realizacoes' },
-    { label: 'Palestras e Eventos', to: '/realizacoes' },
+    { label: 'Oficinas', to: '/realizacoes/oficinas' },
+    { label: 'Homenagens', to: '/realizacoes/homenagens' },
+    { label: 'Palestras', to: '/realizacoes/palestras' },
   ],
   sobre: [
-    { label: 'Missão', to: '/missao' },
-    { label: 'História', to: '/historia' },
     { label: 'Equipe', to: '/equipe' },
+    { label: 'História', to: '/historia' },
   ],
 }
 
