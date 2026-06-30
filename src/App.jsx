@@ -11,6 +11,7 @@ import Equipe from './pages/Equipe'
 import Biblioteca from './pages/Biblioteca'
 import Realizacoes from './pages/Realizacoes'
 import Contato from './pages/Contato'
+import Festival from './pages/Festival'
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/biblioteca" element={<Biblioteca />} />
           <Route path="/realizacoes" element={<Realizacoes />} />
           <Route path="/contato" element={<Contato />} />
+          <Route path="/festival" element={<Festival />} />
         </Routes>
       </main>
       <Footer />

@@ -63,7 +63,7 @@ export default function Header() {
             </button>
           </div>
           <div className={styles.mobileLinks}>
-            {[['/', 'Início'], ['/partituras', 'Banco de Partituras'], ['/compositores', 'Compositores']].map(([to, label]) => (
+            {[['/', 'Início'], ['/partituras', 'Banco de Partituras'], ['/compositores', 'Cavaquinistas'], ['/festival', 'Festival']].map(([to, label]) => (
               <button key={to} className={styles.mobileLink} onClick={() => handleMobileNav(to)}>{label}</button>
             ))}
             <span className={styles.mobileLinkGroup}>Biblioteca</span>
@@ -102,7 +102,8 @@ export default function Header() {
           <nav className={styles.nav} role="navigation" aria-label="Navegação principal">
             <NavLink to="/" end className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>Início</NavLink>
             <NavLink to="/partituras" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>Banco de Partituras</NavLink>
-            <NavLink to="/compositores" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>Compositores</NavLink>
+            <NavLink to="/compositores" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>Cavaquinistas</NavLink>
+            <NavLink to="/festival" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>Festival</NavLink>
 
             {/* Dropdown: Biblioteca */}
             <div className={styles.dropdownWrap}>

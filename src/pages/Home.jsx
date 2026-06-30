@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import NewsletterSection from '../components/NewsletterSection'
+import { missao, visao, valores } from '../data/principios'
 import styles from './Home.module.css'
 
 const icons = {
@@ -89,7 +91,42 @@ export default function Home() {
         <p className={`${styles.introViva} ${styles.reveal}`}>Viva o Cavaquinho Brasileiro!</p>
       </section>
 
-      {/* Cards */}
+      {/* Princípios — Missão / Visão / Valores */}
+      <section className={styles.principios} aria-label="Nossos princípios">
+        <div className="container">
+          <div className={`${styles.sectionHead} ${styles.reveal}`}>
+            <span className={styles.sectionKicker}>Nossos Princípios</span>
+            <h2 className={styles.sectionTitle}>O Que Nos Move</h2>
+          </div>
+
+          {/* Missão — declaração central */}
+          <p className={`${styles.missaoStatement} ${styles.reveal}`}>
+            <span className={styles.principioLabel}>Missão</span>
+            {missao}
+          </p>
+
+          {/* Visão + Valores em duas colunas */}
+          <div className={styles.principiosBody}>
+            <div className={`${styles.principioBlock} ${styles.reveal}`}>
+              <span className={styles.principioLabel}>Visão</span>
+              <p className={styles.visaoText}>{visao}</p>
+            </div>
+            <div className={`${styles.principioBlock} ${styles.reveal}`} style={{ transitionDelay: '0.08s' }}>
+              <span className={styles.principioLabel}>Valores</span>
+              <ul className={styles.valoresList}>
+                {valores.map(v => (
+                  <li key={v}>{v.replace(/;$/, '')}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Novidades / Newsletter */}
+      <NewsletterSection />
+
+      {/* Cards — Acervo */}
       <section className={styles.highlights} aria-label="Seções do acervo">
         <div className="container">
           <div className={`${styles.sectionHead} ${styles.reveal}`}>

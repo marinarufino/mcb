@@ -265,6 +265,104 @@
   line-height: 1.65;
 }
 
+/* ── PRINCÍPIOS (Missão / Visão / Valores) ────────────────── */
+.principios {
+  padding: clamp(64px, 9vw, 112px) 24px;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+/* Rótulo display dourado, comum aos três blocos */
+.principioLabel {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 18px;
+}
+
+/* Missão — declaração central, grande e serifada */
+.missaoStatement {
+  max-width: 880px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2.15rem);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--color-text);
+  letter-spacing: 0.005em;
+}
+.missaoStatement .principioLabel {
+  margin-bottom: 22px;
+}
+
+/* Filete decorativo entre Missão e o bloco abaixo */
+.principiosBody {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(36px, 6vw, 80px);
+  max-width: 940px;
+  margin: clamp(48px, 6vw, 76px) auto 0;
+  padding-top: clamp(40px, 5vw, 60px);
+  border-top: 1px solid var(--color-border);
+}
+/* Hairline vertical dividindo as colunas */
+.principiosBody::before {
+  content: '';
+  position: absolute;
+  top: clamp(40px, 5vw, 60px);
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--color-border);
+}
+
+.principioBlock {
+  min-width: 0;
+}
+.visaoText {
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 1.5vw, 1.28rem);
+  line-height: 1.8;
+  color: var(--color-text-muted);
+}
+
+.valoresList {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.valoresList li {
+  position: relative;
+  padding-left: 24px;
+  font-family: var(--font-heading);
+  font-size: clamp(1.04rem, 1.4vw, 1.18rem);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+.valoresList li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+@media (max-width: 720px) {
+  .principiosBody {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+  .principiosBody::before { display: none; }
+}
+
 /* ── REVEAL ON SCROLL ─────────────────────────────────────── */
 .reveal {
   opacity: 0;

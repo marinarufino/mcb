@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import PageBanner from '../components/PageBanner'
+import { missao, visao, valores } from '../data/principios'
 import styles from './SobrePage.module.css'
 
 export default function Missao() {
@@ -16,16 +17,16 @@ export default function Missao() {
           </div>
           <div className={styles.section}>
             <h3>Missão</h3>
-            <p>Reunir, organizar e divulgar informações sobre a cultura do Cavaquinho Brasileiro. Promover eventos visando uma maior integração entre músicos e a história do instrumento.</p>
+            <p>{missao}</p>
           </div>
           <div className={styles.section}>
             <h3>Visão</h3>
-            <p>Ser um centro de referência da pesquisa e estudo do Cavaquinho Brasileiro e sua complexidade em espaço digital e físico.</p>
+            <p>{visao}</p>
           </div>
           <div className={styles.section}>
             <h3>Valores</h3>
             <ul>
-              {['Propagar conhecimentos;', 'União e colaboração;', 'Abertura e respeito ao diálogo;', 'Paixão pelo Cavaquinho e pela Música Brasileira;', 'Compromisso com a preservação da memória cultural;', 'Rigor na pesquisa e documentação histórica.'].map(v => (
+              {valores.map(v => (
                 <li key={v}>{v}</li>
               ))}
             </ul>
