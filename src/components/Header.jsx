@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { NavLink, Link, useNavigate } from 'react-router-dom'
 import styles from './Header.module.css'
-import logoCavaquinho from '../assets/logo-cavaquinho.png'
+import logoMcb from '../assets/logo-mcb-oficial.png'
 
 const ChevronDown = () => (
   <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
@@ -50,10 +50,7 @@ export default function Header() {
         <div className={styles.mobileNav} role="navigation" aria-label="Navegação mobile">
           <div className={styles.mobileHeader}>
             <Link to="/" className={styles.logo} onClick={() => setMobileOpen(false)}>
-              <img src={logoCavaquinho} alt="Logo Cavaquinho" style={{height: '58px', width: 'auto'}} />
-              <div className={styles.logoText}>
-                Memória do<strong>Cavaquinho</strong>Brasileiro
-              </div>
+              <img src={logoMcb} alt="Memória do Cavaquinho Brasileiro" className={styles.logoImg} />
             </Link>
             <button className={styles.closeBtn} onClick={() => setMobileOpen(false)} aria-label="Fechar menu">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -92,10 +89,7 @@ export default function Header() {
       <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
         <div className={styles.inner}>
           <Link to="/" className={styles.logo}>
-            <img src={logoCavaquinho} alt="Logo Cavaquinho" style={{height: '58px', width: 'auto'}} />
-            <div className={styles.logoText}>
-              Memória do<strong>Cavaquinho</strong>Brasileiro
-            </div>
+            <img src={logoMcb} alt="Memória do Cavaquinho Brasileiro" className={styles.logoImg} />
           </Link>
 
           <nav className={styles.nav} role="navigation" aria-label="Navegação principal">

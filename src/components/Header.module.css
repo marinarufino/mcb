@@ -36,6 +36,11 @@
   text-decoration: none;
   color: var(--color-text);
 }
+.logoImg {
+  height: 54px;
+  width: auto;
+  display: block;
+}
 .logoText {
   font-family: var(--font-body);
   font-size: 0.70rem;

@@ -80,11 +80,11 @@ export default function Partituras() {
             <table className={styles.table}>
               <thead>
                 <tr>
-                  <th>Título</th>
+                  <th>Partitura</th>
                   <th>Compositor</th>
                   <th>Gênero</th>
                   <th>Afinação</th>
-                  <th className={styles.colActions}>Partitura</th>
+                  <th className={styles.colActions}>Ações</th>
                 </tr>
               </thead>
               <tbody>
