@@ -38,6 +38,13 @@ export default {
           fields: [
             { name: 'title', title: 'Título', type: 'string' },
             { name: 'year', title: 'Ano', type: 'number' },
+            {
+              name: 'partitura',
+              title: 'Partitura correspondente',
+              type: 'reference',
+              to: [{ type: 'partitura' }],
+              description: 'Vincule esta obra à partitura correspondente no Banco de Partituras (opcional).',
+            },
           ],
           preview: { select: { title: 'title', subtitle: 'year' } },
         },

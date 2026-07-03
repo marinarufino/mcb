@@ -10,7 +10,7 @@ const TIMEOUT = 5000
 // Resolve slug -> id, URLs de imagem/arquivos, e o compositor vinculado.
 const CAVAQ_QUERY = `*[_type=="cavaquinista"]{
   "id": slug.current, nome, nomeCompleto, nascimento, falecimento, localNascimento,
-  afinacao, "foto": foto.asset->url, bio, obras[]{title, year}
+  afinacao, "foto": foto.asset->url, bio, obras[]{title, year, "partituraId": partitura->slug.current}
 } | order(nome asc)`
 
 const PART_QUERY = `*[_type=="partitura"]{

@@ -98,21 +98,28 @@ export default function CompositorPerfil() {
               <div className={styles.bio}>
                 {(c.bio || '').split('\n').map((p, i) => <p key={i}>{p}</p>)}
               </div>
-
-              {c.obras && c.obras.length > 0 && (
-                <div className={styles.obras}>
-                  <h3 className={styles.obrasTitle}>Obras</h3>
-                  <ul className={styles.obrasList}>
-                    {c.obras.map(o => (
-                      <li key={o.title}>
-                        <span>{o.title}</span>
-                        <span className={styles.obraYear}>{o.year}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
             </div>
+
+            {/* Coluna direita: obras */}
+            {c.obras && c.obras.length > 0 && (
+              <div className={styles.obras}>
+                <h3 className={styles.obrasTitle}>Obras</h3>
+                <ul className={styles.obrasList}>
+                  {c.obras.map(o => (
+                    <li key={o.title}>
+                      {o.partituraId ? (
+                        <Link to={`/partituras/${o.partituraId}`} className={styles.obraLink}>
+                          {o.title}
+                        </Link>
+                      ) : (
+                        <span>{o.title}</span>
+                      )}
+                      {o.year && <span className={styles.obraYear}>{o.year}</span>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
 
           <Link to="/compositores" className={styles.backLink}>
