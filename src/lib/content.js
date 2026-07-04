@@ -8,9 +8,14 @@ import { historia as historiaFallback } from '../data/historia'
 const TIMEOUT = 5000
 
 // Resolve slug -> id, URLs de imagem/arquivos, e o compositor vinculado.
+// As obras são derivadas automaticamente das partituras que referenciam este
+// cavaquinista (campo "compositor" da partitura) — sem cadastro manual duplicado.
 const CAVAQ_QUERY = `*[_type=="cavaquinista"]{
   "id": slug.current, nome, nomeCompleto, nascimento, falecimento, localNascimento,
-  afinacao, "foto": foto.asset->url, bio, obras[]{title, year, "partituraId": partitura->slug.current}
+  afinacao, "foto": foto.asset->url, bio,
+  "obras": *[_type=="partitura" && references(^._id)]{
+    "title": title, "partituraId": slug.current
+  } | order(title asc)
 } | order(nome asc)`
 
 const PART_QUERY = `*[_type=="partitura"]{
