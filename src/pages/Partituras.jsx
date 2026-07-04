@@ -21,6 +21,7 @@ export default function Partituras() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
 
   const [activeLetter, setActiveLetter] = useState(null)
+  const [search, setSearch] = useState('')
 
   const partituras = usePartituras()
   const lista = partituras || []
@@ -36,15 +37,31 @@ export default function Partituras() {
     [ordenadas]
   )
 
-  const filtradas = activeLetter
-    ? ordenadas.filter(p => p.title[0].toUpperCase() === activeLetter)
-    : ordenadas
+  const filtradas = ordenadas
+    .filter(p => !activeLetter || p.title[0].toUpperCase() === activeLetter)
+    .filter(p => {
+      if (!search) return true
+      const q = search.toLowerCase()
+      return p.title.toLowerCase().includes(q) || (p.composer || '').toLowerCase().includes(q)
+    })
 
   return (
     <div className="page-animate">
       <PageBanner title="Banco de Partituras" subtitle="A Música Feita para Cavaquinho" />
       <div className={styles.content}>
         <div className={styles.inner}>
+
+          {/* Busca */}
+          <div className={styles.searchRow}>
+            <input
+              className={styles.searchInput}
+              type="text"
+              placeholder="Buscar partitura..."
+              value={search}
+              onChange={e => { setSearch(e.target.value); setActiveLetter(null) }}
+              aria-label="Buscar partitura"
+            />
+          </div>
 
           {/* Índice alfabético */}
           <div className={styles.alphaBar} role="navigation" aria-label="Filtro alfabético">
@@ -58,6 +75,7 @@ export default function Partituras() {
                   onClick={() => {
                     if (disabled) return
                     setActiveLetter(prev => (prev === letter ? null : letter))
+                    setSearch('')
                   }}
                   aria-pressed={activeLetter === letter}
                   aria-label={`Filtrar pela letra ${letter}`}
@@ -70,7 +88,7 @@ export default function Partituras() {
             <button
               type="button"
               className={`${styles.alphaBtn} ${styles.alphaBtnAll} ${!activeLetter ? styles.alphaBtnActive : ''}`}
-              onClick={() => setActiveLetter(null)}
+              onClick={() => { setActiveLetter(null); setSearch('') }}
             >
               Ver Todos
             </button>
