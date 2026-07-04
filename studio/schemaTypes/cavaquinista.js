@@ -28,28 +28,8 @@ export default {
     { name: 'localNascimento', title: 'Naturalidade', type: 'string', description: 'Ex.: Rio de Janeiro (RJ)' },
     { name: 'afinacao', title: 'Afinação', type: 'string', description: 'Ex.: ré-sol-si-ré' },
     { name: 'bio', title: 'Biografia', type: 'text', rows: 8 },
-    {
-      name: 'obras',
-      title: 'Obras',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            { name: 'title', title: 'Título', type: 'string' },
-            { name: 'year', title: 'Ano', type: 'number' },
-            {
-              name: 'partitura',
-              title: 'Partitura correspondente',
-              type: 'reference',
-              to: [{ type: 'partitura' }],
-              description: 'Vincule esta obra à partitura correspondente no Banco de Partituras (opcional).',
-            },
-          ],
-          preview: { select: { title: 'title', subtitle: 'year' } },
-        },
-      ],
-    },
+    // As obras aparecem automaticamente a partir das partituras que têm este
+    // cavaquinista no campo "Compositor" — não há mais cadastro manual de obras.
   ],
   preview: { select: { title: 'nome', media: 'foto' } },
 }
