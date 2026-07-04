@@ -86,10 +86,10 @@
   background: var(--color-table-hover);
 }
 
-.tdTitle {
+.table tbody td.tdTitle {
   font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 1.06rem;
+  font-size: 1.25rem;
   color: var(--color-primary);
 }
 .titleLink {
