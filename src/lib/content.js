@@ -4,6 +4,7 @@ import { compositores as compositoresFallback } from '../data/compositores'
 import { partituras as partiturasFallback } from '../data/partituras'
 import { equipe as equipeFallback } from '../data/equipe'
 import { historia as historiaFallback } from '../data/historia'
+import { pesquisadores as pesquisadoresFallback } from '../data/pesquisadores'
 
 const TIMEOUT = 5000
 
@@ -69,6 +70,15 @@ const EQUIPE_QUERY = `*[_type=="membroEquipe"]{
 
 export function useEquipe() {
   return useSanityList(EQUIPE_QUERY, equipeFallback)
+}
+
+const PESQUISADORES_QUERY = `*[_type=="pesquisador"]{
+  "id": _id, nome, "foto": foto.asset->url, ordem,
+  "pesquisas": pesquisas[]{ titulo, descricao, "arquivoUrl": arquivo.asset->url }
+} | order(ordem asc, nome asc)`
+
+export function usePesquisadores() {
+  return useSanityList(PESQUISADORES_QUERY, pesquisadoresFallback)
 }
 
 // História é singleton: busca o documento e cai no fallback se vazio.

@@ -10,6 +10,7 @@ import Missao from './pages/Missao'
 import Historia from './pages/Historia'
 import Equipe from './pages/Equipe'
 import Biblioteca from './pages/Biblioteca'
+import Pesquisas from './pages/Pesquisas'
 import Realizacoes from './pages/Realizacoes'
 import Contato from './pages/Contato'
 import EmConstrucao from './components/EmConstrucao'
@@ -35,7 +36,7 @@ export default function App() {
 
           {/* Submenu Biblioteca — em construção */}
           <Route path="/biblioteca/metodos" element={<EmConstrucao titulo="Métodos" subtitulo="Biblioteca · Métodos de Cavaquinho" />} />
-          <Route path="/biblioteca/pesquisas" element={<EmConstrucao titulo="Pesquisas" subtitulo="Biblioteca · Pesquisas e Textos Acadêmicos" />} />
+          <Route path="/biblioteca/pesquisas" element={<Pesquisas />} />
           <Route path="/biblioteca/acervo-digital" element={<EmConstrucao titulo="Acervo Digital" subtitulo="Biblioteca · Gravações e Fotografias" />} />
 
           {/* Submenu Realizações — em construção */}
