@@ -105,7 +105,7 @@ export default function CompositorPerfil() {
               <div className={styles.obras}>
                 <h3 className={styles.obrasTitle}>Obras</h3>
                 <ul className={styles.obrasList}>
-                  {c.obras.map(o => (
+                  {[...c.obras].sort((a, b) => a.title.localeCompare(b.title, 'pt-BR', { sensitivity: 'base' })).map(o => (
                     <li key={o.title}>
                       {o.partituraId ? (
                         <Link to={`/partituras/${o.partituraId}`} className={styles.obraLink}>
