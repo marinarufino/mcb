@@ -27,6 +27,16 @@ const SheetIcon = () => (
   </svg>
 )
 
+// Força o download no Sanity via parâmetro ?dl=<nome>. O atributo HTML `download`
+// é ignorado em arquivos de outro domínio (CDN do Sanity), então usamos o ?dl.
+function downloadUrl(url, nome) {
+  if (!url) return url
+  const ext = url.split('?')[0].split('.').pop()
+  const safeExt = ext && ext.length <= 5 ? `.${ext}` : ''
+  const nomeArquivo = `${(nome || 'arquivo').trim()}${safeExt}`
+  return `${url}${url.includes('?') ? '&' : '?'}dl=${encodeURIComponent(nomeArquivo)}`
+}
+
 export default function PartituraPerfil() {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -129,12 +139,12 @@ export default function PartituraPerfil() {
                   </button>
                 )}
                 {p.arquivoUrl && (
-                  <a className="btn btn-primary" href={p.arquivoUrl} download>
+                  <a className="btn btn-primary" href={downloadUrl(p.arquivoUrl, p.title)}>
                     <DownloadIcon /> Baixar Partitura
                   </a>
                 )}
                 {p.audioUrl && (
-                  <a className="btn btn-primary" href={p.audioUrl} download>
+                  <a className="btn btn-primary" href={downloadUrl(p.audioUrl, p.title)}>
                     <DownloadIcon /> Baixar Áudio
                   </a>
                 )}
