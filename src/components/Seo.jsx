@@ -3,7 +3,7 @@
 // Basta cada página renderizar <Seo title=... description=... path=... />.
 
 const SITE = 'Memória do Cavaquinho Brasileiro'
-const BASE_URL = 'https://memoriadocavaquinho.com.br'
+const BASE_URL = 'https://www.memoriadocavaquinho.com.br'
 const DEFAULT_DESC =
   'Acervo, centro de pesquisas e estudos do cavaquinho no Brasil: partituras, compositores, cavaquinistas e história do instrumento.'
 

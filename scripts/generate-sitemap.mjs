@@ -4,7 +4,7 @@ import { writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, resolve } from 'node:path'
 
-const SITE = 'https://memoriadocavaquinho.com.br'
+const SITE = 'https://www.memoriadocavaquinho.com.br'
 const PROJECT_ID = process.env.VITE_SANITY_PROJECT_ID || 'h8odpb0f'
 const DATASET = process.env.VITE_SANITY_DATASET || 'production'
 const API_VERSION = '2024-01-01'
