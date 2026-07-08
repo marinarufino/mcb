@@ -1,11 +1,17 @@
 import { useEffect } from 'react'
 import PageBanner from '../components/PageBanner'
+import Seo from '../components/Seo'
 import styles from './SobrePage.module.css'
 
 export default function Biblioteca() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
   return (
     <div className="page-animate">
+      <Seo
+        title="Biblioteca"
+        description="Acervo digital do cavaquinho brasileiro: gravações raras, fotografias históricas, textos acadêmicos e métodos de cavaquinho."
+        path="/biblioteca"
+      />
       <PageBanner title="Biblioteca" subtitle="Acervo Digital do Cavaquinho Brasileiro" />
       <div className={styles.content}>
         <div className={styles.inner}>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useCavaquinistas } from '../lib/content'
+import Seo from '../components/Seo'
 import styles from './Compositores.module.css'
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
@@ -37,6 +38,11 @@ export default function Compositores() {
 
   return (
     <div className="page-animate">
+      <Seo
+        title="Cavaquinistas e Compositores"
+        description="Perfis biográficos dos cavaquinistas e compositores que moldaram a história do cavaquinho no Brasil, com obras, afinações e naturalidade."
+        path="/compositores"
+      />
       <div className={styles.pageHeader}>
         <div className={styles.pageHeaderInner}>
           <h1 className={styles.pageTitle}>Cavaquinistas</h1>

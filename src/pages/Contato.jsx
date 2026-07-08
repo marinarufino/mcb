@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import PageBanner from '../components/PageBanner'
+import Seo from '../components/Seo'
 import styles from './SobrePage.module.css'
 
 // Chave de acesso do Web3Forms (gratuita) vinculada ao e-mail
@@ -55,6 +56,11 @@ export default function Contato() {
 
   return (
     <div className="page-animate">
+      <Seo
+        title="Contato"
+        description="Entre em contato com a Memória do Cavaquinho Brasileiro — envie críticas, sugestões, colaborações e materiais para o acervo."
+        path="/contato"
+      />
       <PageBanner title="Contato" subtitle="Entre em Contato Conosco" />
       <div className={styles.content}>
         <div className={styles.inner}>

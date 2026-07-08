@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import NewsletterSection from '../components/NewsletterSection'
 import { missao, visao, valores } from '../data/principios'
+import Seo from '../components/Seo'
 import styles from './Home.module.css'
 
 const icons = {
@@ -63,6 +64,10 @@ export default function Home() {
 
   return (
     <div className="page-animate">
+      <Seo
+        description="Acervo, Centro de Pesquisas e Estudos do Cavaquinho no Brasil. Partituras, perfis de cavaquinistas e compositores, trabalhos acadêmicos e história do instrumento."
+        path="/"
+      />
       {/* Hero */}
       <section className={styles.hero}>
         <div className={styles.heroOverlay} aria-hidden="true" />

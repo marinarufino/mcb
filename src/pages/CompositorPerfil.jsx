@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { useCavaquinistas } from '../lib/content'
+import Seo from '../components/Seo'
 import styles from './CompositorPerfil.module.css'
 
 const PersonIcon = () => (
@@ -30,8 +31,18 @@ export default function CompositorPerfil() {
     )
   }
 
+  const seoDesc = c.bio && c.bio !== 'Informações biográficas em breve.'
+    ? c.bio
+    : `${c.nome}${c.localNascimento ? `, ${c.localNascimento}` : ''} — cavaquinista brasileiro. Perfil biográfico e obras no acervo Memória do Cavaquinho Brasileiro.`
+
   return (
     <div className="page-animate">
+      <Seo
+        title={c.nome}
+        description={seoDesc}
+        path={`/compositores/${c.id}`}
+        image={c.foto}
+      />
       <div className={styles.pageHeader}>
         <div className={styles.pageHeaderInner}>
           <h1 className={styles.pageTitle}>Cavaquinistas</h1>

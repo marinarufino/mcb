@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import PageBanner from '../components/PageBanner'
 import { usePesquisadores } from '../lib/content'
+import Seo from '../components/Seo'
 import styles from './Pesquisas.module.css'
 
 const PersonIcon = () => (
@@ -57,6 +58,11 @@ export default function Pesquisas() {
 
   return (
     <div className="page-animate">
+      <Seo
+        title="Pesquisas e Textos Acadêmicos"
+        description="Pesquisas e textos acadêmicos sobre o cavaquinho brasileiro, reunidos na biblioteca do acervo Memória do Cavaquinho Brasileiro."
+        path="/biblioteca/pesquisas"
+      />
       <PageBanner title="Pesquisas" subtitle="Biblioteca · Pesquisas e Textos Acadêmicos" />
       <div className={styles.content}>
         <div className={styles.inner}>

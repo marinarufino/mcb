@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Vercel CLI (build local + deploy prebuilt)
+.vercel
+
 # Variáveis de ambiente (use .env.example como modelo)
 .env
 .env.*

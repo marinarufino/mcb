@@ -1,11 +1,17 @@
 import { useEffect } from 'react'
 import PageBanner from '../components/PageBanner'
+import Seo from '../components/Seo'
 import styles from './SobrePage.module.css'
 
 export default function Realizacoes() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
   return (
     <div className="page-animate">
+      <Seo
+        title="Realizações"
+        description="Festival Memória do Cavaquinho Brasileiro, publicações, palestras e eventos que celebram o cavaquinho e seus intérpretes."
+        path="/realizacoes"
+      />
       <PageBanner title="Realizações" subtitle="Festival, Publicações e Eventos" />
       <div className={styles.content}>
         <div className={styles.inner}>

@@ -1,12 +1,18 @@
 import { useEffect } from 'react'
 import PageBanner from '../components/PageBanner'
 import { missao, visao, valores } from '../data/principios'
+import Seo from '../components/Seo'
 import styles from './SobrePage.module.css'
 
 export default function Missao() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
   return (
     <div className="page-animate">
+      <Seo
+        title="Missão"
+        description={missao}
+        path="/missao"
+      />
       <PageBanner title="Missão" subtitle="O Que Norteia o Nosso Trabalho" />
       <div className={styles.content}>
         <div className={styles.inner}>

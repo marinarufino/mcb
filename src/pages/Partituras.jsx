@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageBanner from '../components/PageBanner'
 import { usePartituras } from '../lib/content'
+import Seo from '../components/Seo'
 import styles from './Partituras.module.css'
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
@@ -47,6 +48,11 @@ export default function Partituras() {
 
   return (
     <div className="page-animate">
+      <Seo
+        title="Banco de Partituras"
+        description="Partituras originais e arranjos para cavaquinho de compositores brasileiros. Visualize e baixe gratuitamente no acervo Memória do Cavaquinho Brasileiro."
+        path="/partituras"
+      />
       <PageBanner title="Banco de Partituras" subtitle="A Música Feita para Cavaquinho" />
       <div className={styles.content}>
         <div className={styles.inner}>

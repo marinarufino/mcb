@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { usePartituras } from '../lib/content'
+import Seo from '../components/Seo'
 import styles from './PartituraPerfil.module.css'
 
 const EyeIcon = () => (
@@ -65,8 +66,20 @@ export default function PartituraPerfil() {
     ['Editoração', p.editoracao],
   ].filter(([, v]) => v)
 
+  const seoDesc = [
+    `Partitura de "${p.title}"${p.composer ? `, de ${p.composer}` : ''}`,
+    p.genero ? `${p.genero}` : null,
+    p.afinacao ? `afinação ${p.afinacao}` : null,
+  ].filter(Boolean).join(' · ') + '. Baixe no acervo Memória do Cavaquinho Brasileiro.'
+
   return (
     <div className="page-animate">
+      <Seo
+        title={`${p.title}${p.composer ? ` — ${p.composer}` : ''}`}
+        description={seoDesc}
+        path={`/partituras/${p.id}`}
+        image={p.imagem}
+      />
       <div className={styles.pageHeader}>
         <div className={styles.pageHeaderInner}>
           <h1 className={styles.pageTitle}>Banco de Partituras</h1>
