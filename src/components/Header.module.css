@@ -174,13 +174,26 @@
 /* Hamburger */
 .hamburger {
   display: none;
-  flex-direction: column;
-  gap: 5px;
+  align-items: center;
+  gap: 8px;
   background: none;
   border: none;
   padding: 6px;
 }
-.hamburger span {
+.hamburgerLabel {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-primary);
+}
+.hamburgerBars {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.hamburgerBars span {
   display: block;
   width: 22px;
   height: 2px;

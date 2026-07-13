@@ -139,7 +139,8 @@ export default function Header() {
           </Link>
 
           <button className={styles.hamburger} onClick={() => setMobileOpen(true)} aria-label="Abrir menu">
-            <span /><span /><span />
+            <span className={styles.hamburgerLabel}>Menu</span>
+            <span className={styles.hamburgerBars}><span /><span /><span /></span>
           </button>
         </div>
       </header>
