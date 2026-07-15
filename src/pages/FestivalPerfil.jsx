@@ -67,12 +67,6 @@ export default function FestivalPerfil() {
             <span className={styles.breadcrumbCurrent}>{titulo.toUpperCase()}</span>
           </nav>
 
-          {f.capa && (
-            <div className={styles.hero}>
-              <img src={f.capa} alt={titulo} />
-            </div>
-          )}
-
           <div className={styles.header}>
             <span className={`${styles.badge} ${emBreve ? styles.badgeUpcoming : styles.badgePast}`}>
               {emBreve ? 'Em breve' : 'Realizado'}

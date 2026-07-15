@@ -21,6 +21,7 @@ const staticRoutes = [
   { path: '/biblioteca', priority: '0.6', changefreq: 'monthly' },
   { path: '/biblioteca/pesquisas', priority: '0.6', changefreq: 'monthly' },
   { path: '/realizacoes', priority: '0.6', changefreq: 'monthly' },
+  { path: '/festival', priority: '0.7', changefreq: 'monthly' },
   { path: '/contato', priority: '0.5', changefreq: 'monthly' },
 ]
 
@@ -49,9 +50,10 @@ async function main() {
   }
 
   try {
-    const [cavaquinistas, partituras] = await Promise.all([
+    const [cavaquinistas, partituras, festivais] = await Promise.all([
       sanityFetch('*[_type=="cavaquinista" && defined(slug.current)]{"slug":slug.current}'),
       sanityFetch('*[_type=="partitura" && defined(slug.current)]{"slug":slug.current}'),
+      sanityFetch('*[_type=="festival" && defined(slug.current)]{"slug":slug.current}'),
     ])
     for (const c of cavaquinistas) {
       entries.push(url(`/compositores/${c.slug}`, '0.7', 'monthly', today))
@@ -59,7 +61,10 @@ async function main() {
     for (const p of partituras) {
       entries.push(url(`/partituras/${p.slug}`, '0.7', 'monthly', today))
     }
-    console.log(`Sitemap: ${cavaquinistas.length} compositores + ${partituras.length} partituras`)
+    for (const f of festivais) {
+      entries.push(url(`/festival/${f.slug}`, '0.6', 'monthly', today))
+    }
+    console.log(`Sitemap: ${cavaquinistas.length} compositores + ${partituras.length} partituras + ${festivais.length} festivais`)
   } catch (err) {
     console.warn(`Aviso: falha ao buscar o Sanity (${err.message}). Gerando sitemap só com rotas estáticas.`)
   }

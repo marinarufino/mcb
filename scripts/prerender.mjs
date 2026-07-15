@@ -20,6 +20,7 @@ const API_VERSION = '2024-01-01'
 const staticRoutes = [
   '/', '/partituras', '/compositores', '/missao', '/historia',
   '/equipe', '/biblioteca', '/biblioteca/pesquisas', '/realizacoes', '/contato',
+  '/festival',
 ]
 
 const MIME = {
@@ -61,14 +62,16 @@ function startServer(rawIndex) {
 }
 
 async function main() {
-  const [cavaquinistas, partituras] = await Promise.all([
+  const [cavaquinistas, partituras, festivais] = await Promise.all([
     sanityFetch('*[_type=="cavaquinista" && defined(slug.current)]{"slug":slug.current}'),
     sanityFetch('*[_type=="partitura" && defined(slug.current)]{"slug":slug.current}'),
+    sanityFetch('*[_type=="festival" && defined(slug.current)]{"slug":slug.current}'),
   ])
   const routes = [
     ...staticRoutes,
     ...cavaquinistas.map(c => `/compositores/${c.slug}`),
     ...partituras.map(p => `/partituras/${p.slug}`),
+    ...festivais.map(f => `/festival/${f.slug}`),
   ]
 
   // Captura o index.html cru ANTES de qualquer sobrescrita pelo snapshot.
