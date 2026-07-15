@@ -13,6 +13,8 @@ import Biblioteca from './pages/Biblioteca'
 import Pesquisas from './pages/Pesquisas'
 import Realizacoes from './pages/Realizacoes'
 import Contato from './pages/Contato'
+import Festival from './pages/Festival'
+import FestivalPerfil from './pages/FestivalPerfil'
 import EmConstrucao from './components/EmConstrucao'
 
 export default function App() {
@@ -32,7 +34,8 @@ export default function App() {
           <Route path="/biblioteca" element={<Biblioteca />} />
           <Route path="/realizacoes" element={<Realizacoes />} />
           <Route path="/contato" element={<Contato />} />
-          <Route path="/festival" element={<EmConstrucao titulo="Festival" subtitulo="O Festival do Cavaquinho Brasileiro" />} />
+          <Route path="/festival" element={<Festival />} />
+          <Route path="/festival/:id" element={<FestivalPerfil />} />
 
           {/* Submenu Biblioteca — em construção */}
           <Route path="/biblioteca/metodos" element={<EmConstrucao titulo="Métodos" subtitulo="Biblioteca · Métodos de Cavaquinho" />} />

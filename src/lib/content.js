@@ -5,6 +5,8 @@ import { partituras as partiturasFallback } from '../data/partituras'
 import { equipe as equipeFallback } from '../data/equipe'
 import { historia as historiaFallback } from '../data/historia'
 import { pesquisadores as pesquisadoresFallback } from '../data/pesquisadores'
+import { paginaFestival as paginaFestivalFallback } from '../data/paginaFestival'
+import { festivais as festivaisFallback } from '../data/festivais'
 
 const TIMEOUT = 5000
 
@@ -65,7 +67,7 @@ export function usePartituras() {
 }
 
 const EQUIPE_QUERY = `*[_type=="membroEquipe"]{
-  "id": _id, nome, funcao, "foto": foto.asset->url, bio, ordem
+  "id": _id, nome, funcao, "foto": foto.asset->url, ordem
 } | order(ordem asc)`
 
 export function useEquipe() {
@@ -79,6 +81,48 @@ const PESQUISADORES_QUERY = `*[_type=="pesquisador"]{
 
 export function usePesquisadores() {
   return useSanityList(PESQUISADORES_QUERY, pesquisadoresFallback)
+}
+
+// Página Festivais é singleton: busca o documento e cai no fallback se vazio.
+const PAGINA_FESTIVAL_QUERY = `*[_type=="paginaFestival"][0]{ titulo, subtitulo, paragrafos }`
+
+export function usePaginaFestival() {
+  const [data, setData] = useState(null)
+  useEffect(() => {
+    let alive = true
+    if (!sanityClient) {
+      setData(paginaFestivalFallback)
+      return
+    }
+    const timeout = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('timeout')), TIMEOUT)
+    )
+    Promise.race([sanityClient.fetch(PAGINA_FESTIVAL_QUERY), timeout])
+      .then(res => {
+        if (!alive) return
+        setData(res && res.paragrafos && res.paragrafos.length ? res : paginaFestivalFallback)
+      })
+      .catch(() => {
+        if (!alive) return
+        setData(paginaFestivalFallback)
+      })
+    return () => {
+      alive = false
+    }
+  }, [])
+  return data
+}
+
+const FESTIVAIS_QUERY = `*[_type=="festival"]{
+  "id": slug.current, titulo, local, data, dataFim,
+  "capa": capa.asset->url,
+  descricaoCurta, descricao,
+  "galeria": galeria[].asset->url,
+  programacao
+} | order(data asc)`
+
+export function useFestivais() {
+  return useSanityList(FESTIVAIS_QUERY, festivaisFallback)
 }
 
 // História é singleton: busca o documento e cai no fallback se vazio.

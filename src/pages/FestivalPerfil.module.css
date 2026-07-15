@@ -1,0 +1,176 @@
+/* Page header */
+.pageHeader {
+  background: var(--color-white);
+  border-bottom: 2px solid var(--color-border);
+  padding: 40px 24px 28px;
+}
+.pageHeaderInner { max-width: var(--max-width); margin: 0 auto; }
+.pageTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  position: relative;
+  padding-bottom: 10px;
+}
+.pageTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 56px;
+  height: 3px;
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+
+/* Content */
+.content { background: var(--color-white); padding: 32px 24px 72px; }
+.inner { max-width: 860px; margin: 0 auto; }
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.breadcrumbIcon { color: var(--color-accent); font-size: 0.6rem; }
+.breadcrumbLink { color: var(--color-text-muted); transition: color var(--transition); }
+.breadcrumbLink:hover { color: var(--color-primary); }
+.breadcrumbSep { color: var(--color-text-light); }
+.breadcrumbCurrent { color: var(--color-primary); }
+
+/* Hero */
+.hero {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  background: var(--color-bg);
+  margin-bottom: 28px;
+}
+.hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Header */
+.header { margin-bottom: 20px; }
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  margin-bottom: 10px;
+}
+.badgePast { background: rgba(30,58,138,0.9); }
+.badgeUpcoming { background: var(--color-accent); }
+.titulo {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+.meta {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  text-transform: capitalize;
+}
+
+.descricao {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text);
+  margin: 20px 0;
+}
+
+/* Sections */
+.section { margin-top: 40px; }
+.sectionTitle {
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--color-border);
+}
+
+/* Programação */
+.programacao { list-style: none; padding: 0; margin: 0; }
+.programItem {
+  display: flex;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+.programItem:last-child { border-bottom: none; }
+.programHorario {
+  flex-shrink: 0;
+  width: 110px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+.programAtividade { font-size: 0.96rem; font-weight: 600; color: var(--color-text); }
+.programDescricao { margin-top: 4px; font-size: 0.88rem; line-height: 1.6; color: var(--color-text-muted); }
+
+/* Galeria */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+.galeriaItem {
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+}
+.galeriaItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition);
+}
+.galeriaItem:hover img { transform: scale(1.05); }
+
+.backLink {
+  display: inline-block;
+  margin-top: 40px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  transition: color var(--transition);
+}
+.backLink:hover { color: var(--color-primary-dark); }
+
+.notFound {
+  margin-top: 80px;
+  text-align: center;
+  padding: 40px 24px;
+}
+.notFound button {
+  margin-top: 16px;
+  padding: 10px 24px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .programItem { flex-direction: column; gap: 4px; }
+  .programHorario { width: auto; }
+}
