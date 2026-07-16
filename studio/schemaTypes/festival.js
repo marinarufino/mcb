@@ -56,7 +56,32 @@ export default {
       name: 'galeria',
       title: 'Galeria de fotos',
       type: 'array',
-      of: [{ type: 'image', options: { hotspot: true } }],
+      of: [
+        {
+          type: 'object',
+          name: 'fotoGaleria',
+          title: 'Foto',
+          fields: [
+            {
+              name: 'imagem',
+              title: 'Imagem',
+              type: 'image',
+              options: { hotspot: true },
+              validation: Rule => Rule.required(),
+            },
+            {
+              name: 'legenda',
+              title: 'Legenda',
+              type: 'string',
+              description: 'Texto exibido sobre a foto ao passar o mouse (desktop) ou ao tocar (mobile). Opcional.',
+            },
+          ],
+          preview: {
+            select: { media: 'imagem', title: 'legenda' },
+            prepare: ({ media, title }) => ({ title: title || '(sem legenda)', media }),
+          },
+        },
+      ],
       description: 'Fotos exibidas na página do festival.',
     },
     {

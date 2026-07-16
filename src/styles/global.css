@@ -119,6 +119,16 @@ main { padding-top: var(--header-h); }
   transform: translateY(-1px);
 }
 
+/* ── MODAL (<dialog>) OPEN ────────────────────────────────────
+   O header fica position:fixed e, em alguns navegadores, mantém sua
+   própria camada de composição por cima do backdrop de um <dialog>
+   nativo. Escondê-lo enquanto o modal está aberto evita esse
+   conflito — ele fica coberto pelo backdrop de qualquer forma. */
+body:has(dialog[open]) header,
+body:has(dialog[open]) footer {
+  visibility: hidden;
+}
+
 /* ── PAGE ANIMATION ───────────────────────────────────────── */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(14px); }

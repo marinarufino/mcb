@@ -76,7 +76,10 @@ export default function Festival() {
                       </span>
                     </div>
                     <div className={styles.body}>
-                      <span className={styles.year}>{anoDe(f.data)}</span>
+                      <span className={styles.year}>
+                        {anoDe(f.data)}
+                        {f.local && <span className={styles.yearLocal}>— {f.local}</span>}
+                      </span>
                       <h3 className={styles.cardTitle}>{f.titulo || f.local}</h3>
                       <span className={styles.date}>{formatData(f.data)}</span>
                       {f.descricaoCurta && <p className={styles.desc}>{f.descricaoCurta}</p>}

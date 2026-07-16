@@ -69,11 +69,21 @@
   flex-direction: column;
 }
 .year {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 5px;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--color-accent);
   margin-bottom: 6px;
+}
+.yearLocal {
+  font-weight: 600;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--color-text-muted);
 }
 .cardTitle {
   font-size: 1.08rem;

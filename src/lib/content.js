@@ -117,7 +117,7 @@ const FESTIVAIS_QUERY = `*[_type=="festival"]{
   "id": slug.current, titulo, local, data, dataFim,
   "capa": capa.asset->url,
   descricaoCurta, descricao,
-  "galeria": galeria[].asset->url,
+  "galeria": galeria[]{ "url": coalesce(imagem.asset->url, asset->url), legenda },
   programacao
 } | order(data asc)`
 
