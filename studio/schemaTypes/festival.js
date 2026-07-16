@@ -60,7 +60,7 @@ export default {
         {
           type: 'object',
           name: 'fotoGaleria',
-          title: 'Foto',
+          title: 'Foto (com legenda)',
           fields: [
             {
               name: 'imagem',
@@ -81,8 +81,13 @@ export default {
             prepare: ({ media, title }) => ({ title: title || '(sem legenda)', media }),
           },
         },
+        {
+          type: 'image',
+          title: 'Imagem (formato antigo, sem legenda)',
+          options: { hotspot: true },
+        },
       ],
-      description: 'Fotos exibidas na página do festival.',
+      description: 'Fotos exibidas na página do festival. Use "Foto (com legenda)" para novas fotos — o tipo simples de imagem existe só para não quebrar fotos já publicadas antes desse campo existir.',
     },
     {
       name: 'programacao',
