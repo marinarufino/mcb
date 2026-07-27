@@ -7,6 +7,8 @@ import { historia as historiaFallback } from '../data/historia'
 import { pesquisadores as pesquisadoresFallback } from '../data/pesquisadores'
 import { paginaFestival as paginaFestivalFallback } from '../data/paginaFestival'
 import { festivais as festivaisFallback } from '../data/festivais'
+import { paginaMetodos as paginaMetodosFallback } from '../data/paginaMetodos'
+import { metodos as metodosFallback } from '../data/metodos'
 
 const TIMEOUT = 5000
 
@@ -112,9 +114,12 @@ export function usePaginaFestival() {
   return useCachedSanity(PAGINA_FESTIVAL_QUERY, paginaFestivalFallback, hasParagrafos)
 }
 
+// `capa` traz a URL crua (usada no SEO) e `capaImg` o objeto de imagem
+// completo — este último carrega o hotspot definido no painel, sem o qual o
+// recorte do cartão ignoraria o enquadramento escolhido pelo editor.
 const FESTIVAIS_QUERY = `*[_type=="festival"]{
   "id": slug.current, titulo, local, data, dataFim,
-  "capa": capa.asset->url,
+  "capa": capa.asset->url, "capaImg": capa,
   descricaoCurta, descricao,
   "galeria": galeria[]{ "url": coalesce(imagem.asset->url, asset->url), legenda },
   programacao
@@ -122,6 +127,23 @@ const FESTIVAIS_QUERY = `*[_type=="festival"]{
 
 export function useFestivais() {
   return useCachedSanity(FESTIVAIS_QUERY, festivaisFallback, isNonEmptyList)
+}
+
+// Página Métodos é singleton: só o texto de abertura da página.
+const PAGINA_METODOS_QUERY = `*[_type=="paginaMetodos"][0]{ titulo, subtitulo, paragrafos }`
+
+export function usePaginaMetodos() {
+  return useCachedSanity(PAGINA_METODOS_QUERY, paginaMetodosFallback, hasParagrafos)
+}
+
+const METODOS_QUERY = `*[_type=="metodo"]{
+  "id": slug.current, titulo, "capa": capa.asset->url, "capaImg": capa, ordem,
+  autor, edicao, paginas, dimensoes, local, ano,
+  texto, videoUrl
+} | order(ordem asc, titulo asc)`
+
+export function useMetodos() {
+  return useCachedSanity(METODOS_QUERY, metodosFallback, isNonEmptyList)
 }
 
 // História é singleton: busca o documento e cai no fallback se vazio.

@@ -1,3 +1,7 @@
+/* Layout desta página segue o padrão da Festivais: a coluna centralizada e o
+   texto de abertura vêm de SobrePage.module.css (.content/.inner/.longText).
+   Aqui ficam só a grade e o card. */
+
 .empty {
   padding: 40px 0;
   text-align: center;
@@ -5,6 +9,25 @@
   font-size: 0.92rem;
 }
 
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.breadcrumbIcon { color: var(--color-accent); font-size: 0.6rem; }
+.breadcrumbLink { color: var(--color-text-muted); transition: color var(--transition); }
+.breadcrumbLink:hover { color: var(--color-primary); }
+.breadcrumbSep { color: var(--color-text-light); }
+.breadcrumbCurrent { color: var(--color-primary); }
+
+/* Grade */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -30,8 +53,11 @@
   border-color: var(--color-primary-light);
 }
 
-/* Cartaz em pé (3/4): os cartazes de festival são verticais, e em 4/3 o
-   recorte cortava o topo e o rodapé da arte. */
+/* Capa em pé (3/4): método é livro, não foto de evento — em 4/3 o recorte
+   comeria o título impresso na capa.
+   As capas do acervo têm proporções muito diferentes entre si (livro em pé,
+   método deitado, scan quadrado), então NADA é cortado: a capa inteira fica por
+   cima e uma cópia ampliada e desfocada dela preenche o resto do quadro. */
 .media {
   position: relative;
   aspect-ratio: 3 / 4;
@@ -42,9 +68,8 @@
   justify-content: center;
   color: var(--color-text-light);
 }
-/* Cartazes de festival vêm em proporções muito diferentes entre si, então NADA
-   é cortado: o cartaz inteiro fica por cima e uma cópia ampliada e desfocada
-   dele preenche o resto do quadro. */
+/* Fundo: a própria capa (versão de 64px), ampliada e borrada. O scale esconde
+   as bordas transparentes que o blur cria nos cantos. */
 .mediaBg {
   position: absolute;
   inset: 0;
@@ -55,6 +80,7 @@
   transform: scale(1.15);
   z-index: 0;
 }
+/* Frente: a capa por inteiro, na proporção original. */
 .mediaFg {
   position: relative;
   z-index: 1;
@@ -65,28 +91,6 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
 }
 .media svg { opacity: 0.4; }
-
-/* z-index explícito: sem ele o selo brigaria com o fundo desfocado. */
-.badge {
-  position: absolute;
-  z-index: 2;
-  top: 12px;
-  right: 12px;
-  padding: 4px 10px;
-  border-radius: var(--radius-full);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-.badgePast {
-  background: rgba(30,58,138,0.9);
-  color: var(--color-white);
-}
-.badgeUpcoming {
-  background: var(--color-accent);
-  color: var(--color-white);
-}
 
 .body {
   padding: 18px 20px 22px;
@@ -117,14 +121,7 @@
   line-height: 1.35;
   margin-bottom: 6px;
 }
-.date {
+.autor {
   font-size: 0.8rem;
   color: var(--color-text-muted);
-  text-transform: capitalize;
-}
-.desc {
-  margin-top: 10px;
-  font-size: 0.88rem;
-  line-height: 1.6;
-  color: var(--color-text);
 }

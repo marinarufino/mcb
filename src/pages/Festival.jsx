@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import PageBanner from '../components/PageBanner'
 import Seo from '../components/Seo'
 import { usePaginaFestival, useFestivais } from '../lib/content'
+import { blurUrl, fitUrl } from '../lib/sanity'
 import styles from './Festival.module.css'
 import sobreStyles from './SobrePage.module.css'
 
@@ -67,10 +68,25 @@ export default function Festival() {
                 return (
                   <Link key={f.id} to={`/festival/${f.id}`} className={styles.card}>
                     <div className={styles.media}>
-                      {f.capa
-                        ? <img src={f.capa} alt={titulo} loading="lazy" />
-                        : <CalendarIcon />
-                      }
+                      {f.capa ? (
+                        <>
+                          <img
+                            className={styles.mediaBg}
+                            src={blurUrl(f.capaImg, f.capa)}
+                            alt=""
+                            aria-hidden="true"
+                            loading="lazy"
+                          />
+                          <img
+                            className={styles.mediaFg}
+                            src={fitUrl(f.capaImg, f.capa, 560)}
+                            alt={titulo}
+                            loading="lazy"
+                          />
+                        </>
+                      ) : (
+                        <CalendarIcon />
+                      )}
                       <span className={`${styles.badge} ${emBreve ? styles.badgeUpcoming : styles.badgePast}`}>
                         {emBreve ? 'Em breve' : 'Realizado'}
                       </span>

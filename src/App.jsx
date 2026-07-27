@@ -11,6 +11,8 @@ import Historia from './pages/Historia'
 import Equipe from './pages/Equipe'
 import Biblioteca from './pages/Biblioteca'
 import Pesquisas from './pages/Pesquisas'
+import Metodos from './pages/Metodos'
+import MetodoPerfil from './pages/MetodoPerfil'
 import Realizacoes from './pages/Realizacoes'
 import Contato from './pages/Contato'
 import Festival from './pages/Festival'
@@ -37,8 +39,9 @@ export default function App() {
           <Route path="/festival" element={<Festival />} />
           <Route path="/festival/:id" element={<FestivalPerfil />} />
 
-          {/* Submenu Biblioteca — em construção */}
-          <Route path="/biblioteca/metodos" element={<EmConstrucao titulo="Métodos" subtitulo="Biblioteca · Métodos de Cavaquinho" />} />
+          {/* Submenu Biblioteca */}
+          <Route path="/biblioteca/metodos" element={<Metodos />} />
+          <Route path="/biblioteca/metodos/:id" element={<MetodoPerfil />} />
           <Route path="/biblioteca/pesquisas" element={<Pesquisas />} />
           <Route path="/biblioteca/acervo-digital" element={<EmConstrucao titulo="Acervo Digital" subtitulo="Biblioteca · Gravações e Fotografias" />} />
 

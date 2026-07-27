@@ -6,6 +6,8 @@ import paginaHistoria from './paginaHistoria'
 import pesquisador from './pesquisador'
 import paginaFestival from './paginaFestival'
 import festival from './festival'
+import paginaMetodos from './paginaMetodos'
+import metodo from './metodo'
 
 export const schemaTypes = [
   newsletterPost,
@@ -16,4 +18,6 @@ export const schemaTypes = [
   pesquisador,
   paginaFestival,
   festival,
+  paginaMetodos,
+  metodo,
 ]
