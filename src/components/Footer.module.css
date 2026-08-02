@@ -81,6 +81,13 @@
 .bottom strong { color: rgba(255,255,255,0.60); }
 
 @media (max-width: 768px) {
-  .grid { grid-template-columns: 1fr; gap: 32px; }
+  /* Marca ocupa a linha inteira; "Acervo" e "Projeto" dividem a linha de baixo,
+     lado a lado — encurta bastante o rodapé no celular. */
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 20px;
+    padding-bottom: 28px;
+  }
+  .brand { grid-column: 1 / -1; }
   .bottom { flex-direction: column; gap: 6px; text-align: center; }
 }
