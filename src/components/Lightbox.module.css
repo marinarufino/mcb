@@ -1,0 +1,82 @@
+/* Lightbox (elemento <dialog> nativo — renderiza na top layer do navegador) */
+.dialog {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  margin: 0;
+  padding: 48px 16px;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: lightboxFade 0.15s ease;
+}
+.dialog::backdrop {
+  background: rgba(10, 10, 14, 0.92);
+}
+@keyframes lightboxFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: min(92vw, 900px);
+  max-height: 88vh;
+}
+.content img {
+  max-width: 100%;
+  max-height: 76vh;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+.caption {
+  margin-top: 14px;
+  max-width: 640px;
+  color: var(--color-white);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  text-align: center;
+}
+.close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  padding: 4px 10px;
+  background: none;
+  border: none;
+  color: var(--color-white);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-white);
+  font-size: 2rem;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.nav:hover { background: rgba(255, 255, 255, 0.2); }
+.prev { left: 12px; }
+.next { right: 12px; }
+
+@media (max-width: 640px) {
+  .nav { width: 36px; height: 36px; font-size: 1.5rem; }
+  .close { font-size: 1.6rem; top: 10px; right: 14px; }
+}

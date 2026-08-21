@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import Seo from '../components/Seo'
+import Lightbox from '../components/Lightbox'
 import { useFestivais } from '../lib/content'
 import styles from './FestivalPerfil.module.css'
 
@@ -11,63 +12,6 @@ function formatData(data) {
   } catch {
     return data
   }
-}
-
-// Usa <dialog> nativo: renderiza na "top layer" do navegador, então fica
-// sempre acima de qualquer position:fixed da página (ex.: o header), sem
-// depender de disputa de z-index. Também dá Escape e foco de graça.
-function Lightbox({ fotos, index, onClose, onNavigate }) {
-  const dialogRef = useRef(null)
-
-  useEffect(() => {
-    dialogRef.current?.showModal()
-    const { overflow } = document.body.style
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.body.style.overflow = overflow
-    }
-  }, [])
-
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      if (e.key === 'ArrowRight') onNavigate(1)
-      if (e.key === 'ArrowLeft') onNavigate(-1)
-    }
-    document.addEventListener('keydown', onKeyDown)
-    return () => document.removeEventListener('keydown', onKeyDown)
-  }, [onNavigate])
-
-  const foto = fotos[index]
-  if (!foto) return null
-
-  return (
-    <dialog
-      ref={dialogRef}
-      className={styles.lightbox}
-      onClose={onClose}
-      onClick={(e) => { if (e.target === dialogRef.current) dialogRef.current.close() }}
-    >
-      <button className={styles.lightboxClose} onClick={() => dialogRef.current.close()} aria-label="Fechar">&times;</button>
-      {fotos.length > 1 && (
-        <>
-          <button
-            className={`${styles.lightboxNav} ${styles.lightboxPrev}`}
-            onClick={(e) => { e.stopPropagation(); onNavigate(-1) }}
-            aria-label="Foto anterior"
-          >&#8249;</button>
-          <button
-            className={`${styles.lightboxNav} ${styles.lightboxNext}`}
-            onClick={(e) => { e.stopPropagation(); onNavigate(1) }}
-            aria-label="Próxima foto"
-          >&#8250;</button>
-        </>
-      )}
-      <div className={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
-        <img src={foto.url} alt={foto.legenda || ''} />
-        {foto.legenda && <p className={styles.lightboxCaption}>{foto.legenda}</p>}
-      </div>
-    </dialog>
-  )
 }
 
 export default function FestivalPerfil() {
