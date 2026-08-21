@@ -17,7 +17,12 @@ import Realizacoes from './pages/Realizacoes'
 import Contato from './pages/Contato'
 import Festival from './pages/Festival'
 import FestivalPerfil from './pages/FestivalPerfil'
-import EmConstrucao from './components/EmConstrucao'
+import AcervoDigital from './pages/AcervoDigital'
+import Homenagens from './pages/Homenagens'
+import Palestras from './pages/Palestras'
+import Colabore from './pages/Colabore'
+import Oficinas from './pages/Oficinas'
+import OficinaPerfil from './pages/OficinaPerfil'
 
 export default function App() {
   return (
@@ -35,6 +40,7 @@ export default function App() {
           <Route path="/equipe" element={<Equipe />} />
           <Route path="/biblioteca" element={<Biblioteca />} />
           <Route path="/realizacoes" element={<Realizacoes />} />
+          <Route path="/colabore" element={<Colabore />} />
           <Route path="/contato" element={<Contato />} />
           <Route path="/festival" element={<Festival />} />
           <Route path="/festival/:id" element={<FestivalPerfil />} />
@@ -43,12 +49,13 @@ export default function App() {
           <Route path="/biblioteca/metodos" element={<Metodos />} />
           <Route path="/biblioteca/metodos/:id" element={<MetodoPerfil />} />
           <Route path="/biblioteca/pesquisas" element={<Pesquisas />} />
-          <Route path="/biblioteca/acervo-digital" element={<EmConstrucao titulo="Acervo Digital" subtitulo="Biblioteca · Gravações e Fotografias" />} />
+          <Route path="/biblioteca/acervo-digital" element={<AcervoDigital />} />
 
           {/* Submenu Realizações — em construção */}
-          <Route path="/realizacoes/oficinas" element={<EmConstrucao titulo="Oficinas" subtitulo="Realizações · Oficinas" />} />
-          <Route path="/realizacoes/homenagens" element={<EmConstrucao titulo="Homenagens" subtitulo="Realizações · Homenagens" />} />
-          <Route path="/realizacoes/palestras" element={<EmConstrucao titulo="Palestras" subtitulo="Realizações · Palestras" />} />
+          <Route path="/realizacoes/oficinas" element={<Oficinas />} />
+          <Route path="/realizacoes/oficinas/:id" element={<OficinaPerfil />} />
+          <Route path="/realizacoes/homenagens" element={<Homenagens />} />
+          <Route path="/realizacoes/palestras" element={<Palestras />} />
         </Routes>
       </main>
       <Footer />
