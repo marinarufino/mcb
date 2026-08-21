@@ -9,6 +9,10 @@ import { paginaFestival as paginaFestivalFallback } from '../data/paginaFestival
 import { festivais as festivaisFallback } from '../data/festivais'
 import { paginaMetodos as paginaMetodosFallback } from '../data/paginaMetodos'
 import { metodos as metodosFallback } from '../data/metodos'
+import { paginaHomenagens as paginaHomenagensFallback } from '../data/paginaHomenagens'
+import { paginaPalestras as paginaPalestrasFallback } from '../data/paginaPalestras'
+import { paginaOficinas as paginaOficinasFallback } from '../data/paginaOficinas'
+import { oficinas as oficinasFallback } from '../data/oficinas'
 
 const TIMEOUT = 5000
 
@@ -151,4 +155,45 @@ const HISTORIA_QUERY = `*[_type=="paginaHistoria"][0]{ titulo, subtitulo, paragr
 
 export function useHistoria() {
   return useCachedSanity(HISTORIA_QUERY, historiaFallback, hasParagrafos)
+}
+
+// Homenagens e Palestras: cada uma é um documento único com o texto de
+// abertura e a lista de fotos com legenda exibida na página. As consultas
+// filtram por `_type`, então uma página nunca mostra os itens da outra.
+// `imagemImg` traz o objeto de imagem completo (com hotspot), sem o qual o
+// recorte do cartão ignoraria o enquadramento escolhido pelo editor.
+const itensFields = `
+  "itens": itens[]{ "imagem": imagem.asset->url, "imagemImg": imagem, nome, apoio }
+`
+
+const PAGINA_HOMENAGENS_QUERY = `*[_type=="paginaHomenagens"][0]{ titulo, subtitulo, paragrafos, ${itensFields} }`
+
+export function usePaginaHomenagens() {
+  return useCachedSanity(PAGINA_HOMENAGENS_QUERY, paginaHomenagensFallback, hasParagrafos)
+}
+
+const PAGINA_PALESTRAS_QUERY = `*[_type=="paginaPalestras"][0]{ titulo, subtitulo, paragrafos, ${itensFields} }`
+
+export function usePaginaPalestras() {
+  return useCachedSanity(PAGINA_PALESTRAS_QUERY, paginaPalestrasFallback, hasParagrafos)
+}
+
+// Oficinas seguem a mesma estrutura dos festivais: um documento singleton com
+// o texto de abertura e uma coleção própria, com página por oficina.
+const PAGINA_OFICINAS_QUERY = `*[_type=="paginaOficinas"][0]{ titulo, subtitulo, paragrafos }`
+
+export function usePaginaOficinas() {
+  return useCachedSanity(PAGINA_OFICINAS_QUERY, paginaOficinasFallback, hasParagrafos)
+}
+
+const OFICINAS_QUERY = `*[_type=="oficina" && defined(slug.current)]{
+  "id": slug.current, titulo, local, data, dataFim,
+  "capa": capa.asset->url, "capaImg": capa,
+  descricaoCurta, descricao,
+  "galeria": galeria[]{ "url": coalesce(imagem.asset->url, asset->url), legenda },
+  programacao
+} | order(data asc)`
+
+export function useOficinas() {
+  return useCachedSanity(OFICINAS_QUERY, oficinasFallback, isNonEmptyList)
 }

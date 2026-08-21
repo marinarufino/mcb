@@ -8,6 +8,10 @@ import paginaFestival from './paginaFestival'
 import festival from './festival'
 import paginaMetodos from './paginaMetodos'
 import metodo from './metodo'
+import paginaHomenagens from './paginaHomenagens'
+import paginaPalestras from './paginaPalestras'
+import paginaOficinas from './paginaOficinas'
+import oficina from './oficina'
 
 export const schemaTypes = [
   newsletterPost,
@@ -20,4 +24,8 @@ export const schemaTypes = [
   festival,
   paginaMetodos,
   metodo,
+  paginaHomenagens,
+  paginaPalestras,
+  paginaOficinas,
+  oficina,
 ]
