@@ -76,7 +76,7 @@ export default function Header() {
             ))}
             <button className={styles.mobileLink} onClick={() => handleMobileNav('/contato')}>Contato</button>
             <div className={styles.mobileCta}>
-              <button className="btn btn-primary" onClick={() => handleMobileNav('/contato')}>
+              <button className="btn btn-primary" onClick={() => handleMobileNav('/colabore')}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
                 Colabore
               </button>
@@ -131,7 +131,7 @@ export default function Header() {
             <NavLink to="/contato" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>Contato</NavLink>
           </nav>
 
-          <Link to="/contato" className={styles.colaboreBtn}>
+          <Link to="/colabore" className={styles.colaboreBtn}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="14" height="14" aria-hidden="true">
               <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
             </svg>
