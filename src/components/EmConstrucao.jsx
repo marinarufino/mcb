@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import PageBanner from './PageBanner'
+import PageHeader from './PageHeader'
 import styles from '../pages/SobrePage.module.css'
 
 const GearIcon = () => (
@@ -13,7 +13,7 @@ export default function EmConstrucao({ titulo, subtitulo }) {
   useEffect(() => { window.scrollTo(0, 0) }, [titulo])
   return (
     <div className="page-animate">
-      <PageBanner title={titulo} subtitle={subtitulo} />
+      <PageHeader title={titulo} subtitle={subtitulo} />
       <div className={styles.content}>
         <div className={styles.inner}>
           <div className={styles.placeholder}>

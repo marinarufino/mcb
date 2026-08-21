@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import PageBanner from '../components/PageBanner'
+import PageHeader from '../components/PageHeader'
 import Seo from '../components/Seo'
 import { usePaginaFestival, useFestivais } from '../lib/content'
 import { blurUrl, fitUrl } from '../lib/sanity'
@@ -41,7 +41,7 @@ export default function Festival() {
         description="Edições do Festival Memória do Cavaquinho Brasileiro — apresentações, oficinas e programação de cada edição."
         path="/festival"
       />
-      <PageBanner
+      <PageHeader
         title={(pagina && pagina.titulo) || 'Festivais'}
         subtitle={(pagina && pagina.subtitulo) || 'Encontros que Celebram o Cavaquinho'}
       />

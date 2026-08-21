@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import PageBanner from '../components/PageBanner'
+import PageHeader from '../components/PageHeader'
 import Seo from '../components/Seo'
 import styles from './SobrePage.module.css'
 
@@ -12,7 +12,7 @@ export default function Realizacoes() {
         description="Festival Memória do Cavaquinho Brasileiro, publicações, palestras e eventos que celebram o cavaquinho e seus intérpretes."
         path="/realizacoes"
       />
-      <PageBanner title="Realizações" subtitle="Festival, Publicações e Eventos" />
+      <PageHeader title="Realizações" subtitle="Festival, Publicações e Eventos" />
       <div className={styles.content}>
         <div className={styles.inner}>
           <div className={styles.placeholder}>

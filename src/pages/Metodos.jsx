@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import PageBanner from '../components/PageBanner'
+import PageHeader from '../components/PageHeader'
 import { usePaginaMetodos, useMetodos } from '../lib/content'
 import { blurUrl, fitUrl } from '../lib/sanity'
 import Seo from '../components/Seo'
@@ -28,7 +28,7 @@ export default function Metodos() {
         description="Métodos e obras didáticas para cavaquinho publicados no Brasil, reunidos na biblioteca do acervo Memória do Cavaquinho Brasileiro."
         path="/biblioteca/metodos"
       />
-      <PageBanner
+      <PageHeader
         title={(pagina && pagina.titulo) || 'Métodos'}
         subtitle={(pagina && pagina.subtitulo) || 'Biblioteca · Métodos de Cavaquinho'}
       />

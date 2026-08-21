@@ -21,8 +21,13 @@ const staticRoutes = [
   { path: '/biblioteca', priority: '0.6', changefreq: 'monthly' },
   { path: '/biblioteca/pesquisas', priority: '0.6', changefreq: 'monthly' },
   { path: '/biblioteca/metodos', priority: '0.6', changefreq: 'monthly' },
+  { path: '/biblioteca/acervo-digital', priority: '0.6', changefreq: 'monthly' },
   { path: '/realizacoes', priority: '0.6', changefreq: 'monthly' },
+  { path: '/realizacoes/oficinas', priority: '0.6', changefreq: 'monthly' },
+  { path: '/realizacoes/homenagens', priority: '0.6', changefreq: 'monthly' },
+  { path: '/realizacoes/palestras', priority: '0.6', changefreq: 'monthly' },
   { path: '/festival', priority: '0.7', changefreq: 'monthly' },
+  { path: '/colabore', priority: '0.7', changefreq: 'monthly' },
   { path: '/contato', priority: '0.5', changefreq: 'monthly' },
 ]
 
@@ -51,11 +56,12 @@ async function main() {
   }
 
   try {
-    const [cavaquinistas, partituras, festivais, metodos] = await Promise.all([
+    const [cavaquinistas, partituras, festivais, metodos, oficinas] = await Promise.all([
       sanityFetch('*[_type=="cavaquinista" && defined(slug.current)]{"slug":slug.current}'),
       sanityFetch('*[_type=="partitura" && defined(slug.current)]{"slug":slug.current}'),
       sanityFetch('*[_type=="festival" && defined(slug.current)]{"slug":slug.current}'),
       sanityFetch('*[_type=="metodo" && defined(slug.current)]{"slug":slug.current}'),
+      sanityFetch('*[_type=="oficina" && defined(slug.current)]{"slug":slug.current}'),
     ])
     for (const c of cavaquinistas) {
       entries.push(url(`/compositores/${c.slug}`, '0.7', 'monthly', today))
@@ -69,7 +75,10 @@ async function main() {
     for (const m of metodos) {
       entries.push(url(`/biblioteca/metodos/${m.slug}`, '0.6', 'monthly', today))
     }
-    console.log(`Sitemap: ${cavaquinistas.length} compositores + ${partituras.length} partituras + ${festivais.length} festivais + ${metodos.length} métodos`)
+    for (const o of oficinas) {
+      entries.push(url(`/realizacoes/oficinas/${o.slug}`, '0.6', 'monthly', today))
+    }
+    console.log(`Sitemap: ${cavaquinistas.length} compositores + ${partituras.length} partituras + ${festivais.length} festivais + ${metodos.length} métodos + ${oficinas.length} oficinas`)
   } catch (err) {
     console.warn(`Aviso: falha ao buscar o Sanity (${err.message}). Gerando sitemap só com rotas estáticas.`)
   }

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import PageBanner from '../components/PageBanner'
+import PageHeader from '../components/PageHeader'
 import { missao, visao, valores } from '../data/principios'
 import Seo from '../components/Seo'
 import styles from './SobrePage.module.css'
@@ -13,7 +13,7 @@ export default function Missao() {
         description={missao}
         path="/missao"
       />
-      <PageBanner title="Missão" subtitle="O Que Norteia o Nosso Trabalho" />
+      <PageHeader title="Missão" subtitle="O Que Norteia o Nosso Trabalho" />
       <div className={styles.content}>
         <div className={styles.inner}>
           <div className={styles.section}>

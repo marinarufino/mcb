@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import PageBanner from '../components/PageBanner'
+import PageHeader from '../components/PageHeader'
 import Seo from '../components/Seo'
 import { useEquipe } from '../lib/content'
 import styles from './SobrePage.module.css'
@@ -21,7 +21,7 @@ export default function Equipe() {
         description="Conheça quem faz a Memória do Cavaquinho Brasileiro acontecer — pesquisadores e colaboradores do acervo."
         path="/equipe"
       />
-      <PageBanner title="Equipe" subtitle="Saiba Quem Faz Acontecer" />
+      <PageHeader title="Equipe" subtitle="Saiba Quem Faz Acontecer" />
       <div className={styles.content}>
         <div className={styles.inner}>
           {equipe === null ? (

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import PageBanner from '../components/PageBanner'
+import PageHeader from '../components/PageHeader'
 import Seo from '../components/Seo'
 import styles from './SobrePage.module.css'
 
@@ -61,7 +61,7 @@ export default function Contato() {
         description="Entre em contato com a Memória do Cavaquinho Brasileiro — envie críticas, sugestões, colaborações e materiais para o acervo."
         path="/contato"
       />
-      <PageBanner title="Contato" subtitle="Entre em Contato Conosco" />
+      <PageHeader title="Contato" subtitle="Entre em Contato Conosco" />
       <div className={styles.content}>
         <div className={styles.inner}>
           <div className={styles.contatoGrid}>

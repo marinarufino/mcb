@@ -20,7 +20,8 @@ const API_VERSION = '2024-01-01'
 const staticRoutes = [
   '/', '/partituras', '/compositores', '/missao', '/historia',
   '/equipe', '/biblioteca', '/biblioteca/pesquisas', '/biblioteca/metodos',
-  '/realizacoes', '/contato',
+  '/realizacoes', '/realizacoes/oficinas', '/realizacoes/homenagens', '/realizacoes/palestras',
+  '/biblioteca/acervo-digital', '/colabore', '/contato',
   '/festival',
 ]
 
@@ -63,11 +64,12 @@ function startServer(rawIndex) {
 }
 
 async function main() {
-  const [cavaquinistas, partituras, festivais, metodos] = await Promise.all([
+  const [cavaquinistas, partituras, festivais, metodos, oficinas] = await Promise.all([
     sanityFetch('*[_type=="cavaquinista" && defined(slug.current)]{"slug":slug.current}'),
     sanityFetch('*[_type=="partitura" && defined(slug.current)]{"slug":slug.current}'),
     sanityFetch('*[_type=="festival" && defined(slug.current)]{"slug":slug.current}'),
     sanityFetch('*[_type=="metodo" && defined(slug.current)]{"slug":slug.current}'),
+    sanityFetch('*[_type=="oficina" && defined(slug.current)]{"slug":slug.current}'),
   ])
   const routes = [
     ...staticRoutes,
@@ -75,6 +77,7 @@ async function main() {
     ...partituras.map(p => `/partituras/${p.slug}`),
     ...festivais.map(f => `/festival/${f.slug}`),
     ...metodos.map(m => `/biblioteca/metodos/${m.slug}`),
+    ...oficinas.map(o => `/realizacoes/oficinas/${o.slug}`),
   ]
 
   // Captura o index.html cru ANTES de qualquer sobrescrita pelo snapshot.

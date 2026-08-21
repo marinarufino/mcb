@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import PageBanner from '../components/PageBanner'
+import PageHeader from '../components/PageHeader'
 import Seo from '../components/Seo'
 import styles from './SobrePage.module.css'
 
@@ -12,7 +12,7 @@ export default function Biblioteca() {
         description="Acervo digital do cavaquinho brasileiro: gravações raras, fotografias históricas, textos acadêmicos e métodos de cavaquinho."
         path="/biblioteca"
       />
-      <PageBanner title="Biblioteca" subtitle="Acervo Digital do Cavaquinho Brasileiro" />
+      <PageHeader title="Biblioteca" subtitle="Acervo Digital do Cavaquinho Brasileiro" />
       <div className={styles.content}>
         <div className={styles.inner}>
           <div className={styles.placeholder}>
