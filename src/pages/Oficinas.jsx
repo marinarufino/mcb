@@ -58,9 +58,7 @@ export default function Oficinas() {
 
           {oficinas === null ? (
             <p className={styles.empty}>Carregando…</p>
-          ) : oficinas.length === 0 ? (
-            <p className={styles.empty}>Nenhuma oficina cadastrada.</p>
-          ) : (
+          ) : oficinas.length === 0 ? null : (
             <div className={styles.grid}>
               {oficinas.map(f => {
                 const emBreve = f.data > hoje
