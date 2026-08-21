@@ -1,0 +1,130 @@
+.empty {
+  padding: 40px 0;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 28px;
+  margin-top: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  color: inherit;
+  text-decoration: none;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary-light);
+}
+
+/* Cartaz em pé (3/4): os cartazes de festival são verticais, e em 4/3 o
+   recorte cortava o topo e o rodapé da arte. */
+.media {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-light);
+}
+/* Cartazes de festival vêm em proporções muito diferentes entre si, então NADA
+   é cortado: o cartaz inteiro fica por cima e uma cópia ampliada e desfocada
+   dele preenche o resto do quadro. */
+.mediaBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(18px) saturate(1.15);
+  transform: scale(1.15);
+  z-index: 0;
+}
+.mediaFg {
+  position: relative;
+  z-index: 1;
+  max-width: 78%;
+  max-height: 78%;
+  object-fit: contain;
+  border-radius: 2px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+}
+.media svg { opacity: 0.4; }
+
+/* z-index explícito: sem ele o selo brigaria com o fundo desfocado. */
+.badge {
+  position: absolute;
+  z-index: 2;
+  top: 12px;
+  right: 12px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.badgePast {
+  background: rgba(30,58,138,0.9);
+  color: var(--color-white);
+}
+.badgeUpcoming {
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+
+.body {
+  padding: 18px 20px 22px;
+  display: flex;
+  flex-direction: column;
+}
+.year {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 5px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  margin-bottom: 6px;
+}
+.yearLocal {
+  font-weight: 600;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--color-text-muted);
+}
+.cardTitle {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+.date {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-transform: capitalize;
+}
+.desc {
+  margin-top: 10px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
