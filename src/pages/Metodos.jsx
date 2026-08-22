@@ -29,7 +29,7 @@ export default function Metodos() {
         path="/biblioteca/metodos"
       />
       <PageHeader
-        title={(pagina && pagina.titulo) || 'Métodos'}
+        title={(pagina && pagina.titulo) || 'Métodos e Publicações'}
         subtitle={(pagina && pagina.subtitulo) || 'Biblioteca · Métodos de Cavaquinho'}
       />
 

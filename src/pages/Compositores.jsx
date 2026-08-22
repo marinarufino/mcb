@@ -45,7 +45,7 @@ export default function Compositores() {
       />
       <div className={styles.pageHeader}>
         <div className={styles.pageHeaderInner}>
-          <h1 className={styles.pageTitle}>Cavaquinistas</h1>
+          <h1 className={styles.pageTitle}>Cavaquinistas e Compositores</h1>
           <input
             className={styles.searchInput}
             type="text"
