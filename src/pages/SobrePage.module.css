@@ -1,5 +1,10 @@
 .content { background: var(--color-white); padding: 56px 24px; }
-.inner { max-width: 860px; margin: 0 auto; }
+/* Mesma largura do PageHeader (--max-width), para que o conteúdo comece na
+   mesma coluna do título. Antes eram 860px centralizados, o que deixava o
+   título encostado à esquerda e o conteúdo 170px mais para dentro.
+   O texto corrido continua com medida de leitura curta — mas limitado à
+   esquerda (sem `margin auto`), e não centralizado. */
+.inner { max-width: var(--max-width); margin: 0 auto; }
 
 .audioWrap {
   background: var(--color-white);
@@ -24,6 +29,7 @@
   font-size: 0.96rem;
   line-height: 1.78;
   color: var(--color-text);
+  max-width: 860px;
 }
 .section ul { padding-left: 0; }
 .section ul li { margin-bottom: 6px; }
@@ -42,6 +48,7 @@
   text-align: justify;
   hyphens: auto;
   margin-bottom: 24px;
+  max-width: 860px;
 }
 
 /* Team */

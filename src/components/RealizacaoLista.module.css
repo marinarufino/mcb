@@ -6,6 +6,9 @@
   text-align: justify;
   hyphens: auto;
   margin-bottom: 24px;
+  /* Medida de leitura: o container agora vai a 1200px para alinhar com o
+     título, mas a linha de texto continua curta. */
+  max-width: 860px;
 }
 .intro p:last-child { margin-bottom: 0; }
 
