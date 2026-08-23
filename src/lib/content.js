@@ -127,7 +127,7 @@ const FESTIVAIS_QUERY = `*[_type=="festival"]{
   descricaoCurta, descricao,
   "galeria": galeria[]{ "url": coalesce(imagem.asset->url, asset->url), legenda },
   programacao
-} | order(data asc)`
+} | order(data desc)`
 
 export function useFestivais() {
   return useCachedSanity(FESTIVAIS_QUERY, festivaisFallback, isNonEmptyList)

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import PageHeader from '../components/PageHeader'
 import Seo from '../components/Seo'
@@ -34,6 +34,19 @@ export default function Festival() {
 
   const hoje = new Date().toISOString().slice(0, 10)
 
+  // Mais recentes primeiro. A query do Sanity já pede `order(data desc)`, mas
+  // ordenamos aqui também porque o fallback em src/data/festivais.js é um
+  // array mantido à mão — assim a ordem da página não depende de quem cadastra.
+  // Edições sem data vão para o fim.
+  const ordenados = useMemo(() => {
+    if (!festivais) return null
+    return [...festivais].sort((a, b) => {
+      if (!a.data) return 1
+      if (!b.data) return -1
+      return b.data.localeCompare(a.data)
+    })
+  }, [festivais])
+
   return (
     <div className="page-animate">
       <Seo
@@ -56,13 +69,13 @@ export default function Festival() {
             ))
           )}
 
-          {festivais === null ? (
+          {ordenados === null ? (
             <p className={styles.empty}>Carregando…</p>
-          ) : festivais.length === 0 ? (
+          ) : ordenados.length === 0 ? (
             <p className={styles.empty}>Nenhum festival cadastrado.</p>
           ) : (
             <div className={styles.grid}>
-              {festivais.map(f => {
+              {ordenados.map(f => {
                 const emBreve = f.data > hoje
                 const titulo = f.titulo || `${f.local} — ${anoDe(f.data)}`
                 return (
