@@ -159,112 +159,6 @@
   letter-spacing: 0.06em;
 }
 
-/* ── HIGHLIGHTS ───────────────────────────────────────────── */
-.highlights {
-  padding: clamp(64px, 9vw, 112px) 24px;
-  background: var(--color-bg);
-}
-.sectionHead {
-  text-align: center;
-  margin-bottom: 56px;
-}
-.sectionKicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--font-display);
-  font-size: 0.7rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--color-text-light);
-  margin-bottom: 14px;
-}
-.sectionKicker::before, .sectionKicker::after {
-  content: '';
-  width: 26px;
-  height: 1px;
-  background: var(--color-accent);
-}
-.sectionTitle {
-  font-family: var(--font-heading);
-  font-size: clamp(1.7rem, 3.2vw, 2.4rem);
-  font-weight: 600;
-  color: var(--color-text);
-  letter-spacing: 0.01em;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 26px;
-}
-.cardWrap { display: flex; }
-.card {
-  position: relative;
-  background: var(--color-bg-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: 40px 30px 34px;
-  text-align: center;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.45s var(--ease),
-              box-shadow 0.45s var(--ease),
-              border-color 0.45s var(--ease);
-  cursor: pointer;
-  width: 100%;
-  font-family: var(--font-body);
-  overflow: hidden;
-}
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--color-accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.5s var(--ease);
-}
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--color-primary-light);
-}
-.card:hover::before { transform: scaleX(1); }
-
-.cardIcon {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(30,58,138,0.08);
-  border-radius: 50%;
-  color: var(--color-primary);
-  transition: transform 0.45s var(--ease),
-              background 0.45s var(--ease),
-              color 0.45s var(--ease);
-}
-.card:hover .cardIcon {
-  transform: translateY(-2px) scale(1.06);
-  background: var(--color-primary);
-  color: var(--color-white);
-}
-.cardTitle {
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-primary);
-  margin-bottom: 13px;
-}
-.cardDesc {
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
-  line-height: 1.65;
-}
-
 /* ── PRINCÍPIOS (Missão / Visão / Valores) ────────────────── */
 .principios {
   padding: clamp(32px, 4.5vw, 56px) 24px clamp(64px, 9vw, 112px);
@@ -382,6 +276,5 @@
 
 @media (max-width: 600px) {
   .heroContent { padding: 60px 0; }
-  .grid { grid-template-columns: 1fr; }
   .introText::first-letter { font-size: 2.8rem; }
 }

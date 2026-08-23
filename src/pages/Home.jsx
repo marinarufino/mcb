@@ -1,48 +1,10 @@
 import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import NewsletterSection from '../components/NewsletterSection'
 import { missao, visao, valores } from '../data/principios'
 import Seo from '../components/Seo'
 import styles from './Home.module.css'
 
-const icons = {
-  partituras: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="26" height="26">
-      <path d="M9 18V5l12-2v13"/>
-      <circle cx="6" cy="18" r="3"/>
-      <circle cx="18" cy="16" r="3"/>
-    </svg>
-  ),
-  compositores: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="26" height="26">
-      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-      <circle cx="9" cy="7" r="4"/>
-      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-    </svg>
-  ),
-  biblioteca: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="26" height="26">
-      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-    </svg>
-  ),
-  realizacoes: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="26" height="26">
-      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-    </svg>
-  ),
-}
-
-const cards = [
-  { icon: 'partituras', to: '/partituras', title: 'Banco de Partituras', desc: 'A música feita para cavaquinho. Partituras originais e arranjos de compositores brasileiros.' },
-  { icon: 'compositores', to: '/compositores', title: 'Compositores', desc: 'Cavaquinistas e compositores que moldaram a história do instrumento no Brasil.' },
-  { icon: 'biblioteca', to: '/biblioteca', title: 'Biblioteca', desc: 'Acervo de gravações raras, fotografias, textos acadêmicos e métodos de cavaquinho.' },
-  { icon: 'realizacoes', to: '/realizacoes', title: 'Realizações', desc: 'Festival Memória do Cavaquinho Brasileiro, publicações, palestras e eventos.' },
-]
-
 export default function Home() {
-  const navigate = useNavigate()
-
   useEffect(() => { window.scrollTo(0, 0) }, [])
 
   // Reveal suave ao entrar na viewport
@@ -98,6 +60,9 @@ export default function Home() {
         <p className={`${styles.introViva} ${styles.reveal}`}>Viva o Cavaquinho Brasileiro!</p>
       </section>
 
+      {/* Novidades / Newsletter — "O Portal Vivo" */}
+      <NewsletterSection />
+
       {/* Princípios — Missão / Visão / Valores */}
       <section className={styles.principios} aria-label="Nossos princípios">
         <div className="container">
@@ -121,40 +86,6 @@ export default function Home() {
                 ))}
               </ul>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Novidades / Newsletter */}
-      <NewsletterSection />
-
-      {/* Cards — Acervo */}
-      <section className={styles.highlights} aria-label="Seções do acervo">
-        <div className="container">
-          <div className={`${styles.sectionHead} ${styles.reveal}`}>
-            <span className={styles.sectionKicker}>Explore</span>
-            <h2 className={styles.sectionTitle}>O Acervo</h2>
-          </div>
-          <div className={styles.grid}>
-            {cards.map((c, i) => (
-              <div
-                key={c.to}
-                className={`${styles.cardWrap} ${styles.reveal}`}
-                style={{ transitionDelay: `${i * 0.08}s` }}
-              >
-                <button
-                  className={styles.card}
-                  onClick={() => navigate(c.to)}
-                  aria-label={`Ir para ${c.title}`}
-                >
-                  <div className={styles.cardIcon} aria-hidden="true">
-                    {icons[c.icon]}
-                  </div>
-                  <h3 className={styles.cardTitle}>{c.title}</h3>
-                  <p className={styles.cardDesc}>{c.desc}</p>
-                </button>
-              </div>
-            ))}
           </div>
         </div>
       </section>
