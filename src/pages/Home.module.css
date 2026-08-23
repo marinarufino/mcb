@@ -108,7 +108,10 @@
 /* ── INTRO ────────────────────────────────────────────────── */
 .intro {
   background: var(--color-white);
-  padding: clamp(64px, 9vw, 112px) 24px;
+  /* Era clamp(64px, 9vw, 112px). Reduzido ~35%: somado ao topo da seção
+     seguinte, o vão entre o "Viva o Cavaquinho" e o Portal Vivo passava de
+     230px. */
+  padding: clamp(44px, 5.5vw, 72px) 24px;
   text-align: center;
   border-bottom: 1px solid var(--color-border-light);
 }
@@ -117,7 +120,7 @@
   align-items: center;
   justify-content: center;
   gap: 9px;
-  margin-bottom: 34px;
+  margin-bottom: 24px;
 }
 .introDots::before, .introDots::after {
   content: '';
@@ -136,7 +139,7 @@
 
 .introText {
   max-width: 720px;
-  margin: 0 auto 30px;
+  margin: 0 auto 22px;
   font-family: var(--font-heading);
   font-size: clamp(1.12rem, 1.5vw, 1.34rem);
   line-height: 1.85;
@@ -161,7 +164,7 @@
 
 /* ── PRINCÍPIOS (Missão / Visão / Valores) ────────────────── */
 .principios {
-  padding: clamp(32px, 4.5vw, 56px) 24px clamp(64px, 9vw, 112px);
+  padding: clamp(28px, 3.5vw, 44px) 24px clamp(48px, 6vw, 80px);
   background: var(--color-white);
   border-bottom: 1px solid var(--color-border-light);
 }
@@ -200,15 +203,17 @@
   grid-template-columns: 1fr 1fr;
   gap: clamp(36px, 6vw, 80px);
   max-width: 940px;
-  margin: clamp(48px, 6vw, 76px) auto 0;
-  padding-top: clamp(40px, 5vw, 60px);
+  margin: clamp(32px, 4vw, 52px) auto 0;
+  padding-top: clamp(28px, 3.5vw, 44px);
   border-top: 1px solid var(--color-border);
 }
 /* Hairline vertical dividindo as colunas */
 .principiosBody::before {
   content: '';
   position: absolute;
-  top: clamp(40px, 5vw, 60px);
+  /* Precisa acompanhar o `padding-top` do .principiosBody, senão o filete
+     começa acima ou abaixo da borda superior. */
+  top: clamp(28px, 3.5vw, 44px);
   bottom: 0;
   left: 50%;
   width: 1px;
