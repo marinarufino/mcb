@@ -17,14 +17,21 @@
   margin-top: 44px;
 }
 
-.card { margin: 0; }
+/* Coluna flex para que a data possa ser empurrada ao rodapé do cartão: assim
+   as datas ficam alinhadas entre os cartões de uma mesma fileira, mesmo com
+   descrições de alturas diferentes. */
+.card {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 
 .foto {
   border-color: var(--color-primary-light);
   box-shadow: var(--shadow-md);
 }
 .card:hover .foto img { transform: scale(1.04); }
-.card:hover .nome { color: var(--color-primary-light); }
 
 .foto {
   aspect-ratio: 4 / 3;
@@ -46,28 +53,29 @@
 .foto svg { opacity: 0.35; }
 
 .legenda {
-  display: block;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   margin-top: 12px;
 }
-.nome {
+/* Texto corrido, não um título: alinhado à esquerda, porque descrição de duas
+   ou três linhas centralizada fica com o recorte irregular e difícil de ler. */
+.descricao {
   display: block;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--color-primary);
-  line-height: 1.4;
-  /* Reserva duas linhas para o título: assim a linha de data/local fica na
-     mesma altura em todos os cartões da fileira, mesmo com títulos de tamanhos
-     diferentes (1.4 de line-height × 2 linhas = 2.8em). */
-  min-height: 2.8em;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-text);
+  line-height: 1.6;
 }
-.apoio {
+.data {
   display: block;
   font-size: 0.82rem;
   letter-spacing: 0.03em;
   color: var(--color-text-light);
   line-height: 1.4;
-  margin-top: 3px;
+  /* Empurra a data para o rodapé do cartão — ver comentário em .card. */
+  margin-top: auto;
+  padding-top: 8px;
 }
 
 @media (max-width: 860px) {

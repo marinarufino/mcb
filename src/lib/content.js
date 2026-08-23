@@ -163,7 +163,7 @@ export function useHistoria() {
 // `imagemImg` traz o objeto de imagem completo (com hotspot), sem o qual o
 // recorte do cartão ignoraria o enquadramento escolhido pelo editor.
 const itensFields = `
-  "itens": itens[]{ "imagem": imagem.asset->url, "imagemImg": imagem, nome, apoio }
+  "itens": itens[]{ _key, "imagem": imagem.asset->url, "imagemImg": imagem, descricao, data }
 `
 
 const PAGINA_HOMENAGENS_QUERY = `*[_type=="paginaHomenagens"][0]{ titulo, subtitulo, paragrafos, ${itensFields} }`

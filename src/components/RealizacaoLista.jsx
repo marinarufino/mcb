@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import PageHeader from './PageHeader'
 import Seo from './Seo'
 import { cropUrl } from '../lib/sanity'
+import { formatData } from '../lib/datas'
 import sobreStyles from '../pages/SobrePage.module.css'
 import styles from './RealizacaoLista.module.css'
 
@@ -41,15 +42,23 @@ export default function RealizacaoLista({ pagina, basePath, tituloPadrao, subtit
                   {itens.map((item, i) => {
                     const foto = cropUrl(item.imagemImg, item.imagem, 600, 450)
                     return (
-                      <figure className={styles.card} key={`${item.nome}-${i}`}>
+                      <figure className={styles.card} key={item._key ?? i}>
                         <div className={styles.foto}>
+                          {/* alt vazio de propósito: a descrição logo abaixo, no
+                              figcaption, já descreve a foto. Repeti-la no alt
+                              faria o leitor de tela anunciar o mesmo texto duas
+                              vezes seguidas. */}
                           {foto
-                            ? <img src={foto} alt={item.nome} loading="lazy" />
+                            ? <img src={foto} alt="" loading="lazy" />
                             : <PersonIcon />}
                         </div>
                         <figcaption className={styles.legenda}>
-                          <span className={styles.nome}>{item.nome}</span>
-                          {item.apoio && <span className={styles.apoio}>{item.apoio}</span>}
+                          <span className={styles.descricao}>{item.descricao}</span>
+                          {item.data && (
+                            <time className={styles.data} dateTime={item.data}>
+                              {formatData(item.data)}
+                            </time>
+                          )}
                         </figcaption>
                       </figure>
                     )

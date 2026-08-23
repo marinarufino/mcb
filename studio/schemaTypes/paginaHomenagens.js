@@ -6,6 +6,6 @@ export default paginaRealizacaoBase({
   tituloPadrao: 'Homenagens',
   itensLabel: 'Homenagens',
   itemTitle: 'Homenagem',
-  nomeLabel: 'Nome do homenageado',
-  nomeDescricao: 'Exibido em destaque abaixo da foto.',
+  descricaoLabel: 'Descrição da homenagem',
+  descricaoAjuda: 'Exibida abaixo da foto, no cartão da página.',
 })

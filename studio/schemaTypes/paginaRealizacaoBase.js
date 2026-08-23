@@ -2,7 +2,10 @@
 // Cada chamada gera um documento ÚNICO e independente: texto de introdução
 // mais a lista de fotos com legenda exibida na página. As fotos não levam a
 // lugar nenhum — não há página por item.
-export default function paginaRealizacaoBase({ name, title, tituloPadrao, itensLabel, itemTitle, nomeLabel, nomeDescricao }) {
+//
+// Cada item tem exatamente três campos: foto, descrição e a data em que
+// aconteceu.
+export default function paginaRealizacaoBase({ name, title, tituloPadrao, itensLabel, itemTitle, descricaoLabel, descricaoAjuda }) {
   return {
     name,
     title,
@@ -36,21 +39,23 @@ export default function paginaRealizacaoBase({ name, title, tituloPadrao, itensL
                 validation: Rule => Rule.required(),
               },
               {
-                name: 'nome',
-                title: nomeLabel,
-                type: 'string',
-                description: nomeDescricao,
+                name: 'descricao',
+                title: descricaoLabel,
+                type: 'text',
+                rows: 3,
+                description: descricaoAjuda,
                 validation: Rule => Rule.required(),
               },
               {
-                name: 'apoio',
-                title: 'Linha de apoio',
-                type: 'string',
-                description: 'Opcional. Ano, local ou ocasião. Ex.: "2023 — São João del-Rei".',
+                name: 'data',
+                title: 'Data',
+                type: 'date',
+                description: 'Data em que aconteceu. Exibida abaixo da descrição, no cartão.',
+                validation: Rule => Rule.required(),
               },
             ],
             preview: {
-              select: { media: 'imagem', title: 'nome', subtitle: 'apoio' },
+              select: { media: 'imagem', title: 'descricao', subtitle: 'data' },
             },
           },
         ],

@@ -6,6 +6,6 @@ export default paginaRealizacaoBase({
   tituloPadrao: 'Palestras',
   itensLabel: 'Palestras',
   itemTitle: 'Palestra',
-  nomeLabel: 'Título da palestra',
-  nomeDescricao: 'Exibido em destaque abaixo da foto.',
+  descricaoLabel: 'Descrição da palestra',
+  descricaoAjuda: 'Exibida abaixo da foto, no cartão da página.',
 })
