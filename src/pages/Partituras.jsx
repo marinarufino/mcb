@@ -53,21 +53,22 @@ export default function Partituras() {
         description="Partituras originais e arranjos para cavaquinho de compositores brasileiros. Visualize e baixe gratuitamente no acervo Memória do Cavaquinho Brasileiro."
         path="/partituras"
       />
-      <PageHeader title="Banco de Partituras" subtitle="A Música Feita para Cavaquinho" />
+      <PageHeader
+        title="Banco de Partituras"
+        subtitle="A Música Feita para Cavaquinho"
+        action={
+          <input
+            className={styles.searchInput}
+            type="text"
+            placeholder="Buscar partitura..."
+            value={search}
+            onChange={e => { setSearch(e.target.value); setActiveLetter(null) }}
+            aria-label="Buscar partitura"
+          />
+        }
+      />
       <div className={styles.content}>
         <div className={styles.inner}>
-
-          {/* Busca */}
-          <div className={styles.searchRow}>
-            <input
-              className={styles.searchInput}
-              type="text"
-              placeholder="Buscar partitura..."
-              value={search}
-              onChange={e => { setSearch(e.target.value); setActiveLetter(null) }}
-              aria-label="Buscar partitura"
-            />
-          </div>
 
           {/* Índice alfabético */}
           <div className={styles.alphaBar} role="navigation" aria-label="Filtro alfabético">

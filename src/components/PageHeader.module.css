@@ -8,6 +8,19 @@
   padding: 40px 24px 28px;
 }
 .pageHeaderInner { max-width: var(--max-width); margin: 0 auto; }
+
+/* Variação com ação à direita (ex.: campo de busca do Banco de Partituras).
+   Mesmo desenho da página de Cavaquinistas: título à esquerda, ação à
+   direita, na mesma linha. Só entra em jogo quando a prop `action` existe,
+   então as demais páginas seguem inalteradas. */
+.pageHeaderInner.hasAction {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.headerText { min-width: 0; }
 .pageTitle {
   font-size: 2rem;
   font-weight: 800;
@@ -36,4 +49,11 @@
 @media (max-width: 640px) {
   .pageHeader { padding: 28px 20px 22px; }
   .pageTitle { font-size: 1.6rem; }
+  .pageHeaderInner.hasAction {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .headerText { width: 100%; }
+  .headerAction { width: 100%; }
 }

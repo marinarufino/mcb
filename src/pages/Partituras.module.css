@@ -1,12 +1,8 @@
 .content { background: var(--color-white); padding: 56px 24px; }
 .inner { max-width: var(--max-width); margin: 0 auto; }
 
-/* Busca (mesmo padrão da página de Cavaquinistas) */
-.searchRow {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 24px;
-}
+/* Busca (mesmo padrão da página de Cavaquinistas) — o input é renderizado
+   dentro do cabeçalho, via prop `action` do PageHeader. */
 .searchInput {
   padding: 10px 20px;
   font-size: 0.88rem;
