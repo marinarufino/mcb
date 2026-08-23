@@ -18,7 +18,12 @@
 }
 .inner {
   width: 100%;
-  max-width: var(--max-width);
+  /* Mais largo que o --max-width (1200px) do corpo do site de propósito: com
+     8 itens de nav mais os dois botões, o conteúdo precisa de ~1330px e
+     transbordava para fora da tela, cortando o "Colabore" à direita. Header
+     mais largo que a coluna de texto é padrão comum e não desalinha nada,
+     porque o logo continua à esquerda e os botões à direita. */
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 24px;
   display: flex;
@@ -63,7 +68,9 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 8px 10px;
+  /* 10px -> 7px na horizontal: recupera ~48px somando os 8 itens, o que baixa
+     a largura mínima em que o menu completo ainda cabe. */
+  padding: 8px 7px;
   font-size: 0.70rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -148,6 +155,38 @@
 .dropdownLink:hover { background: rgba(30,58,138,0.06); color: var(--color-primary); }
 
 /* Colabore CTA */
+.headerCtas {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Secundário: mesma pílula do Colabore, mas em contorno. Preenche no hover,
+   invertendo para o mesmo azul do primário. */
+.grupoBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  background: transparent;
+  color: var(--color-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-primary);
+  transition: background var(--transition), color var(--transition), transform var(--transition);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.grupoBtn:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  transform: translateY(-1px);
+}
+
 .colaboreBtn {
   display: inline-flex;
   align-items: center;
@@ -266,10 +305,19 @@
   width: 100%;
 }
 .mobileLinkSub:hover { background: rgba(30,58,138,0.04); }
-.mobileCta { margin-top: 20px; }
+.mobileCta {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
 
 /* Responsive */
-@media (max-width: 1020px) {
-  .nav, .colaboreBtn { display: none; }
+/* Era 1020px. O menu completo (logo + 8 itens + 2 botões) precisa de ~1330px;
+   abaixo disso o conteúdo transbordava para fora da tela em vez de encolher,
+   cortando o "Colabore". Agora troca para o hambúrguer antes de estourar. */
+@media (max-width: 1340px) {
+  .nav, .headerCtas { display: none; }
   .hamburger { display: flex; }
 }

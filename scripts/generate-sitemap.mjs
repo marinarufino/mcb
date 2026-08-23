@@ -28,6 +28,7 @@ const staticRoutes = [
   { path: '/realizacoes/palestras', priority: '0.6', changefreq: 'monthly' },
   { path: '/festival', priority: '0.7', changefreq: 'monthly' },
   { path: '/colabore', priority: '0.7', changefreq: 'monthly' },
+  { path: '/grupo-de-estudos', priority: '0.7', changefreq: 'monthly' },
   { path: '/contato', priority: '0.5', changefreq: 'monthly' },
 ]
 

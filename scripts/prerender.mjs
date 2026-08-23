@@ -21,7 +21,7 @@ const staticRoutes = [
   '/', '/partituras', '/compositores', '/missao', '/historia',
   '/equipe', '/biblioteca', '/biblioteca/pesquisas', '/biblioteca/metodos',
   '/realizacoes', '/realizacoes/oficinas', '/realizacoes/homenagens', '/realizacoes/palestras',
-  '/biblioteca/acervo-digital', '/colabore', '/contato',
+  '/biblioteca/acervo-digital', '/colabore', '/grupo-de-estudos', '/contato',
   '/festival',
 ]
 

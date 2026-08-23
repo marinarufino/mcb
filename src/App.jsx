@@ -21,6 +21,7 @@ import AcervoDigital from './pages/AcervoDigital'
 import Homenagens from './pages/Homenagens'
 import Palestras from './pages/Palestras'
 import Colabore from './pages/Colabore'
+import GrupoEstudos from './pages/GrupoEstudos'
 import Oficinas from './pages/Oficinas'
 import OficinaPerfil from './pages/OficinaPerfil'
 
@@ -41,6 +42,7 @@ export default function App() {
           <Route path="/biblioteca" element={<Biblioteca />} />
           <Route path="/realizacoes" element={<Realizacoes />} />
           <Route path="/colabore" element={<Colabore />} />
+          <Route path="/grupo-de-estudos" element={<GrupoEstudos />} />
           <Route path="/contato" element={<Contato />} />
           <Route path="/festival" element={<Festival />} />
           <Route path="/festival/:id" element={<FestivalPerfil />} />
