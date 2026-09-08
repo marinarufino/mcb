@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import styles from './Footer.module.css'
 import logoCavaquinhoWhite from '../assets/logo-cavaquinho-white.png'
-import logoFomento from '../assets/fomento-foca-rio-cultura.jpeg'
+import logoFomento from '../assets/fomento-foca-rio-cultura-branco.png'
 
 const acervoLinks = [
   { label: 'Banco de Partituras', to: '/partituras' },
